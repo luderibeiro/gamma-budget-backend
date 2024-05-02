@@ -1,0 +1,48 @@
+services:
+    projekt:
+        container_name: projekt
+        build:
+            context: .
+        deploy:
+            resources:
+                limits:
+                    cpus: "1"
+                    memory: 1024M
+        ports:
+            - "8000:8000"
+        volumes:
+            - ./projekt:/projekt
+            - ./data/web/static:/data/web/static
+            - ./data/web/media:/data/web/media
+        env_file:
+            - ./dotenv_files/.env
+        depends_on:
+            - projekt_db
+
+    projekt_db:
+        container_name: projekt_db
+        user: "postgres"
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_DB: postgres
+            POSTGRES_PASSWORD: postgres
+        image: postgres:13-alpine
+        deploy:
+            resources:
+                limits:
+                    cpus: "1"
+                    memory: 1024M
+        volumes:
+            - projekt_db:/var/lib/postgresql/data
+        ports:
+            - "5432:5432"
+        env_file:
+            - ./dotenv_files/.env
+        healthcheck:
+            test: ["CMD-SHELL", "pg_isready -U postgres"]
+            interval: 5s
+            timeout: 5s
+            retries: 5
+
+volumes:
+    projekt_db:
