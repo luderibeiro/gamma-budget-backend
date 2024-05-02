@@ -71,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "project.wsgi.application"
+WSGI_APPLICATION = "projekt.wsgi.application"
 
 
 # Database
@@ -83,7 +83,7 @@ DATABASES = {
         "NAME": "postgres",
         "USER": "postgres",
         "PASSWORD": "postgres",
-        "HOST": "project_db",
+        "HOST": "projekt_db",
         "PORT": 5432,  # default PostgreSQL port
     }
 }
