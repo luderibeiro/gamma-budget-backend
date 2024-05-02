@@ -54,7 +54,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "project.urls"
+ROOT_URLCONF = "projekt.urls"
 
 TEMPLATES = [
     {
@@ -191,9 +191,9 @@ JAZZMIN_SETTINGS = {
     "login_logo_dark": None,
     # Logo to use for login form in dark themes (defaults to login_logo)
     # Welcome text on the login screen
-    "welcome_sign": "Welcome to the Ludev Django project",
+    "welcome_sign": "Welcome to the Gamma-Budget administration pannel",
     # Copyright on the footer
-    "copyright": "Ludev Django Base project",
+    "copyright": "Gamma-Budget Administration pannel",
     # List of model admins to search from the search bar, search bar omitted if excluded
     # If you want to use a single search field you dont need to use a list, you can use a simple string
     "search_model": [],
