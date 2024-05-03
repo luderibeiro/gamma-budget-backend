@@ -12,7 +12,11 @@ Siga estes passos para executar o projeto:
 
 1.  **Clonar o Repositório:**
 
-        git clone git@github.com:luderibeiro/django_base.git
+        git clone git@gitlab.com:fga-eps-rmc/fintech/grupo3/fintech-grupo3/back-end.git
+
+    ou com HTTPS:
+
+        git clone https://gitlab.com/fga-eps-rmc/fintech/grupo3/fintech-grupo3/back-end.git
 
 2.  **Configurar o Ambiente:**
 
@@ -33,7 +37,9 @@ Siga estes passos para executar o projeto:
 -   No caso de receber este erro: `PermissionError: [Errno 13] Permission denied: '/data/web/static/admin'`
     Rodar o seguinte comando:
 
-            sudo chown -R user:group data
+        sudo chown -R user:group data
+
+`obs.: Mude "user" por seu usuário local da máquina e "group" pelo grupo do usuário`
 
 ## Contribuição
 
