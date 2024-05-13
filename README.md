@@ -20,9 +20,11 @@ Siga estes passos para executar o projeto:
 
 2.  **Configurar o Ambiente:**
 
--   Crie um arquivo `.env` na raiz do projeto e adicione as configurações necessárias, como chaves de API, configurações de banco de dados, etc.
+-   Crie um arquivo `.env` na pasta dotenv_files do projeto e adicione as configurações necessárias, como chaves de API, configurações de banco de dados, etc.
 
-4.  **Executar o Docker Compose:**
+`obs.: Existe um arquivo .env-example para gruiar o processo.`
+
+1.  **Executar o Docker Compose:**
 
         docker-compose up --build
 
@@ -50,3 +52,8 @@ Sinta-se à vontade para contribuir com melhorias ou novas funcionalidades. Bast
 3. Faça suas alterações e faça commit: `git commit -m 'Adiciona nova feature'`.
 4. Faça push para o branch: `git push origin feature/nova-feature`.
 5. Abra um pull request.
+
+**Recomendações**
+
+-   Para contribuição recomendamos que seja criado uma virtualenv na pasta raiz para que te ajude no desenvolvimento.
+-
