@@ -1,4 +1,5 @@
 # type: ignore
+# ruff: noqa
 
 """
 Django settings for project.
