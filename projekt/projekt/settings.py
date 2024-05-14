@@ -88,9 +88,14 @@ DATABASES = {
         "PASSWORD": "postgres",
         "HOST": "projekt_db",
         "PORT": 5432,  # default PostgreSQL port
-    }
+    },
+    "test": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": ":memory:",  # Use an in-memory SQLite database
+        # Or specify a file path to a temporary SQLite database:
+        # 'NAME': os.path.join(BASE_DIR, 'test_db.sqlite3'),
+    },
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -133,8 +138,14 @@ STATIC_ROOT = DATA_DIR / "static"
 MEDIA_URL = "/media/"
 MEDIA_ROOT = DATA_DIR / "media"
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-
+STORAGES = {
+    "static": {
+        "class": "whitenoise.storage.CompressedManifestStaticFilesStorage",  # Specify your storage class
+        "kwargs": {
+            "location": "static",
+        },
+    },
+}
 
 # Authentication user model definition
 AUTH_USER_MODEL = "core.User"
