@@ -1,5 +1,8 @@
-from core.api.v1.views import user
+# type: ignore
+
 from django.urls import include, path
+
+from core.api.v1.views import user
 
 app_name = "core"
 
@@ -12,10 +15,4 @@ user = [
     ),
 ]
 
-urlpatterns = [
-    path(
-        "v1/",
-        include("core.api.urls.v1_urls"),
-        name="v1",
-    ),
-] + user
+urlpatterns = [path("v1/", include("core.api.urls.v1_urls"), name="v1"), *user]

@@ -30,18 +30,13 @@ class UserSerializer(serializers.ModelSerializer):
     def get_groups(self, obj):
         return list(obj.groups.all().values_list("name", flat=True))
 
-
     def create(self, validated_data):
         return validated_data
 
 
 class UserAlterPasswordSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(
-        write_only=True, required=True, min_length=6, allow_blank=False
-    )
-    new_password = serializers.CharField(
-        write_only=True, required=True, min_length=6, allow_blank=False
-    )
+    password = serializers.CharField(write_only=True, required=True, min_length=6, allow_blank=False)
+    new_password = serializers.CharField(write_only=True, required=True, min_length=6, allow_blank=False)
 
     class Meta:
         fields = (
