@@ -1,6 +1,3 @@
-# type: ignore
-# ruff: noqa
-
 """
 Django settings for project.
 
@@ -13,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -43,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.admin",
     "oauth2_provider",
+    "rest_framework",
     "core",
 ]
 
@@ -61,7 +60,7 @@ ROOT_URLCONF = "projekt.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": ["core/templates/"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -96,6 +95,7 @@ DATABASES = {
         # 'NAME': os.path.join(BASE_DIR, 'test_db.sqlite3'),
     },
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -185,7 +185,7 @@ OAUTH2_PROVIDER = {
     "DEFAULT_SCOPES": ["read"],
     "ACCESS_TOKEN_EXPIRE_SECONDS": 86400,
     "REFRESH_TOKEN_EXPIRE_SECONDS": 2592000,
-    "OAUTH2_VALIDATOR_CLASS": "delivery.validators.OAuth2Validator",
+    "OAUTH2_VALIDATOR_CLASS": "core.validators.GammaBudgetOAuth2Validator",
     "OAUTH2_BACKEND_CLASS": "oauth2_provider.oauth2_backends.JSONOAuthLibCore",
 }
 

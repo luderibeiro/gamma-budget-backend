@@ -1,10 +1,14 @@
 from typing import ClassVar
 
 from django.contrib.auth import get_user_model
-from rest_framework import generics
-from rest_framework.permissions import IsAdminUser
+from rest_framework import filters, generics
+from rest_framework.permissions import AllowAny, IsAdminUser
 
-from ..serializers.user import UserAlterPasswordSerializer, UserSerializer
+from ..serializers.user import (
+    UserAlterPasswordSerializer,
+    UserCreateSerializer,
+    UserSerializer,
+)
 
 User = get_user_model()
 
@@ -43,3 +47,9 @@ class UserAlterPasswordAPIView(generics.UpdateAPIView):
     queryset = User.objects.filter(is_superuser=False)
     serializer_class = UserAlterPasswordSerializer
     permission_classes = (IsAdminUser,)
+
+
+class UserCreateAPIView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserCreateSerializer
+    permission_classes = (AllowAny,)

@@ -1,5 +1,4 @@
 from typing import ClassVar
-
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 
@@ -111,9 +110,6 @@ class User(AbstractUser):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
-
-    USERNAME_FIELD: str = "email"
-    REQUIRED_FIELDS: ClassVar[list[str]] = ["username"]
 
     def __str__(self):
         return self.email

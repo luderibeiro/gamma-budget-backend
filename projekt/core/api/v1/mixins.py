@@ -3,7 +3,9 @@ from rest_framework.response import Response
 
 
 class ExecuteUseCaseOnGetMixin:
-    """Mixin para executar casos de uso ao lidar com solicitações GET."""
+    """
+    Mixin para executar casos de uso ao lidar com solicitações GET.
+    """
 
     def get(self, request, *args, **kwargs):
         """
@@ -151,7 +153,9 @@ class ExecuteUseCaseOnGetMixin:
         return response
 
     class Http400Error(Exception):
-        """Exceção para erros de solicitação HTTP 400."""
+        """
+        Exceção para erros de solicitação HTTP 400.
+        """
 
         def __init__(self, message):
             super().__init__(message)
