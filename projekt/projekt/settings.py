@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "oauth2_provider",
     "rest_framework",
     "core",
+    "budget",
 ]
 
 MIDDLEWARE = [
@@ -139,7 +140,8 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = DATA_DIR / "media"
 
 STORAGES = {
-    "static": {
+    "staticfiles": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
         "class": "whitenoise.storage.CompressedManifestStaticFilesStorage",  # Specify your storage class
         "kwargs": {
             "location": "static",
@@ -197,7 +199,7 @@ JAZZMIN_SETTINGS = {
     # Title on the brand (19 chars max)
     "site_brand": "Django Base",
     # Logo to use for your site, must be present in static files, used for brand on top left
-    "site_logo": "img/logo.png",
+    "site_logo": "img/green-logo-150.png",
     # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
     "login_logo_dark": None,
     # Logo to use for login form in dark themes (defaults to login_logo)
