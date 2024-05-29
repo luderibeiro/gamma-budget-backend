@@ -20,9 +20,12 @@ class RevenueCreateRepository(AbstractBaseRevenueCreateDataAccess):
             return None
         revenue = RevenueModel.objects.create(
             user_id=user_id,
-            name=data["name"],
-            description=data["description"],
-            amount=data["amount"],
+            name=data.get("name"),
+            description=data.get("description"),
+            amount=data.get("amount"),
+            expiration_date=data.get("expiration_date"),
+            paid=data.get("paid"),
+            payment_date=data.get("payment_date"),
             category=category,
         )
         return parse_revenue_model_to_entity(revenue)
