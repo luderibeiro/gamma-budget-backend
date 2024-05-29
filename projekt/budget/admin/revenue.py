@@ -5,6 +5,7 @@ from django.contrib import admin
 class RevenueAdmin(admin.ModelAdmin):
 
     list_display = [
+        "id",
         "name",
         "amount",
         "category",
@@ -13,17 +14,21 @@ class RevenueAdmin(admin.ModelAdmin):
         "category",
     ]
     search_fields = [
+        "id",
         "name",
         "description",
     ]
     ordering = [
+        "user_id",
         "expiration_date",
+        "category",
         "name",
     ]
 
 
 class InstallmentAdmin(admin.ModelAdmin):
     list_display = [
+        "id",
         "revenue",
         "amount",
         "due_date",
@@ -39,6 +44,7 @@ class InstallmentAdmin(admin.ModelAdmin):
 
 class RecurringAdmin(admin.ModelAdmin):
     list_display = [
+        "id",
         "active",
         "revenue",
         "amount",

@@ -1,7 +1,10 @@
+import uuid
+
 from django.db import models
 
 
 class Installment(models.Model):
+    id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4)
     revenue = models.ForeignKey("Revenue", on_delete=models.CASCADE, related_name="installment")
     amount = models.DecimalField(max_digits=15, decimal_places=2)
     due_date = models.DateField()

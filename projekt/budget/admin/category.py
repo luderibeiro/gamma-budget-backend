@@ -4,6 +4,7 @@ from django.contrib import admin
 
 class IncomingCategoryAdmin(admin.ModelAdmin):
     list_display = [
+        "id",
         "name",
         "description",
     ]
@@ -18,6 +19,7 @@ class IncomingCategoryAdmin(admin.ModelAdmin):
 
 class RevenueCategoryAdmin(admin.ModelAdmin):
     list_display = [
+        "id",
         "name",
         "description",
     ]
