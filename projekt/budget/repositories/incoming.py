@@ -17,7 +17,7 @@ class IncomingCreateRepository(AbstractBaseIncomingCreateDataAccess):
     def create_incoming(self, data: dict, user_id: int) -> Incoming:
         category = IncomingCategory.objects.get(id=data["category"])
         if not category:
-            raise Exception("Category not found")
+            return None
         incoming = IncomingModel.objects.create(
             user_id=user_id,
             name=data["name"],
@@ -54,12 +54,13 @@ class IncomingUpdateRepository(AbstractBaseIncomingUpdateDataAccess):
 
     def update_incoming(self, user_id: int, incoming_id: str, data: dict) -> Incoming:
         incoming = IncomingModel.objects.filter(id=incoming_id, user_id=user_id).first()
+        category = IncomingCategory.objects.get(id=data["category"]) if data.get("category") else None
         if not incoming:
-            raise Exception("Incoming not found")
+            return None
         incoming.name = data.get("name") if data.get("name") else incoming.name
         incoming.description = data.get("description") if data.get("description") else incoming.description
         incoming.amount = data.get("amount") if data.get("amount") else incoming.amount
-        incoming.category = data.get("category") if data.get("category") else incoming.category
+        incoming.category = category if category else incoming.category
         incoming.save()
         return parse_incoming_model_to_entity(incoming)
 
