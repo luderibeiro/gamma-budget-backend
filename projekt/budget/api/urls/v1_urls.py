@@ -6,4 +6,9 @@ urlpatterns = [
         include("budget.api.v1.urls.incoming"),
         name="incoming",
     ),
+    path(
+        "revenue/",
+        include("budget.api.v1.urls.revenue"),
+        name="revenue",
+    ),
 ]
