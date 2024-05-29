@@ -3,14 +3,19 @@ from django.contrib import admin
 
 
 class RevenueAdmin(admin.ModelAdmin):
-
+    readonly_fields = [
+        "id",
+        "user_id",
+    ]
     list_display = [
         "id",
+        "user_id",
         "name",
         "amount",
         "category",
     ]
     list_filter = [
+        "user_id",
         "category",
     ]
     search_fields = [
@@ -24,6 +29,10 @@ class RevenueAdmin(admin.ModelAdmin):
         "category",
         "name",
     ]
+
+    class Meta:
+        model = Revenue
+        fields = "__all__"
 
 
 class InstallmentAdmin(admin.ModelAdmin):
