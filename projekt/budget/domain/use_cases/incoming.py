@@ -1,4 +1,4 @@
-from budget.data_access.incoming import (
+from budget.domain.data_access.incoming import (
     AbstractBaseIncomingCreateDataAccess,
     AbstractBaseIncomingDeleteDataAccess,
     AbstractBaseIncomingListDataAccess,
