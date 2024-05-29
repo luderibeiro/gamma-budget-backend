@@ -43,6 +43,9 @@ class RevenueCreateAPIView(APIView, ExecuteUseCaseOnCreateMixin):
             "name": request.data.get("name"),
             "description": request.data.get("description"),
             "amount": request.data.get("amount"),
+            "expiration_date": request.data.get("expiration_date"),
+            "paid": True if request.data.get("paid") == "true" else False,
+            "payment_date": request.data.get("payment_date") if request.data.get("paid") == "true" else None,
             "category": request.data.get("category"),
         }
         return data
