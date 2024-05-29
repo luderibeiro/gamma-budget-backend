@@ -1,14 +1,6 @@
 from budget.models import Incoming
 from rest_framework import serializers
 
-# class CategorySerializer(serializers.ModelSerializer):
-#     name = serializers.CharField(max_length=100)
-#     description = serializers.CharField(max_length=500, required=False)
-
-#     class Meta:
-#         model = Incoming
-#         fields = "__all__"
-
 
 class IncomingCreateSerializer(serializers.ModelSerializer):
     name = serializers.CharField(max_length=100)
