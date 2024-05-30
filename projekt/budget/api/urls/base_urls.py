@@ -1,4 +1,3 @@
-from budget.api.v1.views import user
 from django.urls import include, path
 
 app_name = "budget"

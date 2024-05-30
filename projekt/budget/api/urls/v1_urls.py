@@ -1,3 +1,9 @@
 from django.urls import include, path
 
-urlpatterns: list[str] = []
+urlpatterns = [
+    path(
+        "incoming/",
+        include("budget.api.v1.urls.incoming"),
+        name="incoming",
+    ),
+]
