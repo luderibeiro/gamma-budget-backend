@@ -13,7 +13,7 @@ from budget.repositories.parsers.revenue import parse_revenue_model_to_entity
 
 
 class RevenueCreateRepository(AbstractBaseRevenueCreateDataAccess):
-    def create_revenue(self, data: dict, user_id: int) -> Revenue:
+    def create_revenue(self, data: dict, user_id: int) -> Revenue | None:
         category = RevenueCategory.objects.get(id=data["category"])
         print("expiration_date", data.get("expiration_date"))
         if not category:
@@ -32,7 +32,7 @@ class RevenueCreateRepository(AbstractBaseRevenueCreateDataAccess):
 
 
 class RevenueListRepository(AbstractBaseRevenueListDataAccess):
-    def get_revenues(self, user_id) -> list[Revenue]:
+    def get_revenues(self, user_id) -> list[Revenue] | None:
         revenue_qs = RevenueModel.objects.all().filter(user_id=user_id)
         if not revenue_qs.exists():
             return None
@@ -41,7 +41,7 @@ class RevenueListRepository(AbstractBaseRevenueListDataAccess):
 
 
 class RevenueRetrieveRepository(AbstractBaseRevenueRetrieveDataAccess):
-    def get_revenue(self, revenue_id: int, user_id: int) -> Revenue:
+    def get_revenue(self, revenue_id: int, user_id: int) -> Revenue | None:
         revenue = RevenueModel.objects.filter(id=revenue_id, user_id=user_id)
         if not revenue.exists():
             return None
@@ -49,13 +49,13 @@ class RevenueRetrieveRepository(AbstractBaseRevenueRetrieveDataAccess):
 
 
 class RevenueUpdateRepository(AbstractBaseRevenueUpdateDataAccess):
-    def get_revenue(self, revenue_id: int, user_id: int) -> Revenue:
+    def get_revenue(self, revenue_id: int, user_id: int) -> Revenue | None:
         revenue = RevenueModel.objects.filter(id=revenue_id)
         if not revenue.exists():
             return None
         return parse_revenue_model_to_entity(revenue)
 
-    def update_revenue(self, user_id: int, revenue_id: str, data: dict) -> Revenue:
+    def update_revenue(self, user_id: int, revenue_id: str, data: dict) -> Revenue | None:
         revenue = RevenueModel.objects.filter(id=revenue_id, user_id=user_id).first()
         category = RevenueCategory.objects.get(id=data["category"]) if data.get("category") else None
         if not revenue:
@@ -74,7 +74,7 @@ class RevenueUpdateRepository(AbstractBaseRevenueUpdateDataAccess):
 
 
 class RevenueDeleteRepository(AbstractBaseRevenueDeleteDataAccess):
-    def get_revenue(self, revenue_id: int, user_id: int) -> Revenue:
+    def get_revenue(self, revenue_id: int, user_id: int) -> Revenue | None:
         revenue = RevenueModel.objects.filter(id=revenue_id)
         if not revenue.exists():
             return None
