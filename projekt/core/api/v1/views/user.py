@@ -50,6 +50,16 @@ class UserAlterPasswordAPIView(generics.UpdateAPIView):
 
 
 class UserCreateAPIView(generics.CreateAPIView):
+    """
+    API view to create a new user.
+
+    Attributes:
+    ----------
+        queryset: The queryset of users.
+        serializer_class: The serializer class for user creation.
+        permission_classes: The permission classes for accessing this view.
+    """
+
     queryset = User.objects.all()
     serializer_class = UserCreateSerializer
     permission_classes = (AllowAny,)
