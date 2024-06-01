@@ -1,13 +1,10 @@
 from abc import ABCMeta, abstractmethod
-from typing import List
 
 from budget.domain.entities.revenue import Revenue
 
 
 class AbstractBaseRevenueCreateDataAccess(metaclass=ABCMeta):
-    """
-    Base class for revenue create data access.
-    """
+    """Base class for revenue create data access."""
 
     @abstractmethod
     def create_revenue(self, user_id: int) -> Revenue:
@@ -15,19 +12,15 @@ class AbstractBaseRevenueCreateDataAccess(metaclass=ABCMeta):
 
 
 class AbstractBaseRevenueListDataAccess(metaclass=ABCMeta):
-    """
-    Base class for revenue list data access.
-    """
+    """Base class for revenue list data access."""
 
     @abstractmethod
-    def get_revenues(self, user_id: int) -> List[Revenue]:
+    def get_revenues(self, user_id: int) -> list[Revenue]:
         pass
 
 
 class AbstractBaseRevenueRetrieveDataAccess(metaclass=ABCMeta):
-    """
-    Base class for revenue retrieve data access.
-    """
+    """Base class for revenue retrieve data access."""
 
     @abstractmethod
     def get_revenue(self, revenue_id: int, user_id: int) -> Revenue:
@@ -35,9 +28,7 @@ class AbstractBaseRevenueRetrieveDataAccess(metaclass=ABCMeta):
 
 
 class AbstractBaseRevenueUpdateDataAccess(metaclass=ABCMeta):
-    """
-    Base class for revenue update data access.
-    """
+    """Base class for revenue update data access."""
 
     @abstractmethod
     def get_revenue(self, revenue_id: int, user_id: int) -> Revenue:
@@ -49,9 +40,7 @@ class AbstractBaseRevenueUpdateDataAccess(metaclass=ABCMeta):
 
 
 class AbstractBaseRevenueDeleteDataAccess(metaclass=ABCMeta):
-    """
-    Base class for revenue delete data access.
-    """
+    """Base class for revenue delete data access."""
 
     @abstractmethod
     def get_revenue(self, revenue_id: int, user_id: int) -> Revenue:

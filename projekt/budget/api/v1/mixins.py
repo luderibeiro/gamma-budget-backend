@@ -3,9 +3,7 @@ from rest_framework.response import Response
 
 
 class ExecuteUseCaseOnGetMixin:
-    """
-    Mixin para executar casos de uso ao lidar com solicitações GET.
-    """
+    """Mixin para executar casos de uso ao lidar com solicitações GET."""
 
     use_case = None
     use_case_retrieve = None
@@ -30,11 +28,7 @@ class ExecuteUseCaseOnGetMixin:
         """
         try:
             uc = self.execute_use_case_retrieve(request, *args, **kwargs)
-            response = (
-                uc.get_response()
-                if hasattr(uc, "get_response")
-                else Response(uc.data, status=status.HTTP_200_OK)
-            )
+            response = uc.get_response() if hasattr(uc, "get_response") else Response(uc.data, status=status.HTTP_200_OK)
             if self.image_fields:
                 response = self.apply_domain_host_in_image_fields(request, response, *args, **kwargs)
             if response.data is None:
@@ -152,12 +146,10 @@ class ExecuteUseCaseOnGetMixin:
         def nested_update(output_response):
             if isinstance(output_response, dict):
                 for key, value in output_response.items():
-                    if isinstance(value, (dict, list)):
+                    if isinstance(value, dict | list):
                         nested_update(value)
                     elif key in self.image_fields:
-                        output_response[key] = (
-                            f"{request.scheme}://{request.get_host()}{value}" if value else None
-                        )
+                        output_response[key] = f"{request.scheme}://{request.get_host()}{value}" if value else None
             elif isinstance(output_response, list):
                 for item in output_response:
                     nested_update(item)
@@ -166,19 +158,15 @@ class ExecuteUseCaseOnGetMixin:
         return response
 
     class Http400Error(Exception):
-        """
-        Exceção para erros de solicitação HTTP 400.
-        """
+        """Exceção para erros de solicitação HTTP 400."""
 
         def __init__(self, message):
             super().__init__(message)
             self.message = message
 
 
-class ExecuteUseCaseOnDestroyMixin(object):
-    """
-    Mixin para executar casos de uso ao lidar com solicitações DELETE.
-    """
+class ExecuteUseCaseOnDestroyMixin:
+    """Mixin para executar casos de uso ao lidar com solicitações DELETE."""
 
     use_case = None
     use_case_destroy = None
@@ -255,25 +243,21 @@ class ExecuteUseCaseOnDestroyMixin(object):
         Obtém os argumentos do caso de uso.
 
         Args:
-
+        ----
         request: Objeto de solicitação HTTP.
         """
         return {}
 
     def get_use_case_output_destroy(self):
-        """
-        Obtém a saída do caso de uso do método destroy.
-        """
+        """Obtém a saída do caso de uso do método destroy."""
         return self.use_case_output_destroy if self.use_case_output_destroy else self.use_case_output
 
     class Http400Error(Exception):
         pass
 
 
-class ExecuteUseCaseOnUpdateMixin(object):
-    """
-    Mixin para executar casos de uso ao lidar com solicitações PUT e PATCH.
-    """
+class ExecuteUseCaseOnUpdateMixin:
+    """Mixin para executar casos de uso ao lidar com solicitações PUT e PATCH."""
 
     use_case = None
     use_case_update = None
@@ -292,7 +276,6 @@ class ExecuteUseCaseOnUpdateMixin(object):
             *args: Argumentos posicionais adicionais.
             **kwargs: Argumentos de palavra-chave adicionais.
         """
-
         serializer = self.get_serializer(request)
         return self.update_data(request, serializer, *args, **kwargs)
 
@@ -379,27 +362,19 @@ class ExecuteUseCaseOnUpdateMixin(object):
         return uc.execute()
 
     def get_use_case_update(self):
-        """
-        Obtém a classe de caso de uso do método update.
-        """
+        """Obtém a classe de caso de uso do método update."""
         return self.use_case_update if self.use_case_update else self.use_case
 
     def get_use_case_kwargs_update(self, request, data, *args, **kwargs):
-        """
-        Obtém os argumentos do caso de uso do método update.
-        """
+        """Obtém os argumentos do caso de uso do método update."""
         return self.get_use_case_kwargs(request, data, *args, **kwargs)
 
     def get_use_case_kwargs(self, request, data, *args, **kwargs):
-        """
-        Obtém os argumentos do caso de uso.
-        """
+        """Obtém os argumentos do caso de uso."""
         return {}
 
     def get_use_case_output_update(self):
-        """
-        Obtém a saída do caso de uso do método update.
-        """
+        """Obtém a saída do caso de uso do método update."""
         return self.use_case_output_update if self.use_case_output_update else self.use_case_output
 
     def apply_domain_host_in_image_fields(self, request, response, *args, **kwargs):
@@ -415,17 +390,13 @@ class ExecuteUseCaseOnUpdateMixin(object):
         """
 
         def nested_update(output_response):
-            """
-            Atualiza campos de imagem na resposta.
-            """
+            """Atualiza campos de imagem na resposta."""
             if isinstance(output_response, dict):
                 for key, value in output_response.items():
-                    if isinstance(value, (dict, list)):
+                    if isinstance(value, dict | list):
                         nested_update(value)
                     elif key in self.image_fields:
-                        output_response[key] = (
-                            f"{request.scheme}://{request.get_host()}{value}" if value else None
-                        )
+                        output_response[key] = f"{request.scheme}://{request.get_host()}{value}" if value else None
             elif isinstance(output_response, list):
                 for item in output_response:
                     nested_update(item)
@@ -437,10 +408,8 @@ class ExecuteUseCaseOnUpdateMixin(object):
         pass
 
 
-class ExecuteUseCaseOnPutMixin(object):
-    """
-    Mixin para executar casos de uso ao lidar com solicitações PUT.
-    """
+class ExecuteUseCaseOnPutMixin:
+    """Mixin para executar casos de uso ao lidar com solicitações PUT."""
 
     use_case = None
     use_case_output = None
@@ -456,7 +425,6 @@ class ExecuteUseCaseOnPutMixin(object):
             *args: Argumentos posicionais adicionais.
             **kwargs: Argumentos de palavra-chave adicionais.
         """
-
         self.use_case.output_response = self.use_case_output
         try:
             uc = self.execute(request, *args, **kwargs)
@@ -476,26 +444,20 @@ class ExecuteUseCaseOnPutMixin(object):
             raise
 
     def execute(self, request, *args, **kwargs):
-        """
-        Executa o caso de uso.
-        """
+        """Executa o caso de uso."""
         uc = self.use_case(**self.get_use_case_kwargs(request, *args, **kwargs))
         return uc.execute()
 
     def get_use_case_kwargs(self, request, *args, **kwargs):
-        """
-        Obtém os argumentos do caso de uso.
-        """
+        """Obtém os argumentos do caso de uso."""
         return {}
 
     class Http400Error(Exception):
         pass
 
 
-class ExecuteUseCaseOnCreateMixin(object):
-    """
-    Mixin para executar casos de uso ao lidar com solicitações POST.
-    """
+class ExecuteUseCaseOnCreateMixin:
+    """Mixin para executar casos de uso ao lidar com solicitações POST."""
 
     use_case = None
     use_case_create = None
@@ -516,19 +478,11 @@ class ExecuteUseCaseOnCreateMixin(object):
             *args: Argumentos posicionais adicionais.
             **kwargs: Argumentos de palavra-chave adicionais.
         """
-        self.serializer_instance = self.get_serializer_create()(
-            data=request.data, context={"request": request}
-        )
+        self.serializer_instance = self.get_serializer_create()(data=request.data, context={"request": request})
         if self.serializer_instance.is_valid():
             try:
-                uc = self.execute_use_case_create(
-                    request, data=self.serializer_instance.data, *args, **kwargs
-                )
-                response = (
-                    uc.get_response()
-                    if hasattr(uc, "get_response")
-                    else Response(uc.data, status=status.HTTP_200_OK)
-                )
+                uc = self.execute_use_case_create(request, data=self.serializer_instance.data, *args, **kwargs)
+                response = uc.get_response() if hasattr(uc, "get_response") else Response(uc.data, status=status.HTTP_200_OK)
                 if response.data is None:
                     return Response(
                         {"detail": "object not found"},
@@ -558,16 +512,13 @@ class ExecuteUseCaseOnCreateMixin(object):
             *args: Argumentos posicionais adicionais.
             **kwargs: Argumentos de palavra-chave adicionais.
         """
-
         use_case_class = self.get_use_case_create()
         use_case_class.output_response = self.get_use_case_output_create()
         uc = use_case_class(data=data, **self.get_use_case_kwargs_create(request, *args, **kwargs))
         return uc.execute()
 
     def get_use_case_create(self):
-        """
-        Obtém a classe de caso de uso do método create.
-        """
+        """Obtém a classe de caso de uso do método create."""
         return self.use_case_create if self.use_case_create else self.use_case
 
     def get_use_case_kwargs_create(self, request, *args, **kwargs):
@@ -595,15 +546,11 @@ class ExecuteUseCaseOnCreateMixin(object):
         return {}
 
     def get_use_case_output_create(self):
-        """
-        Obtém a saída do caso de uso do método create.
-        """
+        """Obtém a saída do caso de uso do método create."""
         return self.use_case_output_create if self.use_case_output_create else self.use_case_output
 
     def get_serializer_create(self):
-        """
-        Obtém a serializer de criação.
-        """
+        """Obtém a serializer de criação."""
         return self.serializer_create if self.serializer_create else self.serializer
 
     def catch_error(self, error: Exception):

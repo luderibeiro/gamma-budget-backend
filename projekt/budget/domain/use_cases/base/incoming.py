@@ -1,13 +1,10 @@
 from abc import ABCMeta, abstractmethod
-from typing import List
 
 from budget.domain.entities.incoming import Incoming
 
 
 class AbstractIncomingUseCase(metaclass=ABCMeta):
-    """
-    Base class for use cases incoming output.
-    """
+    """Base class for use cases incoming output."""
 
     @property
     @abstractmethod
@@ -16,9 +13,7 @@ class AbstractIncomingUseCase(metaclass=ABCMeta):
 
 
 class AbstractIncomingCreateUseCase(metaclass=ABCMeta):
-    """
-    Base class for use cases create incoming output.
-    """
+    """Base class for use cases create incoming output."""
 
     @property
     @abstractmethod
@@ -27,20 +22,16 @@ class AbstractIncomingCreateUseCase(metaclass=ABCMeta):
 
 
 class AbstractIncomingListUseCase(metaclass=ABCMeta):
-    """
-    Base class for use cases list incomings output.
-    """
+    """Base class for use cases list incomings output."""
 
     @property
     @abstractmethod
-    def execute(self) -> List[Incoming]:
+    def execute(self) -> list[Incoming]:
         pass
 
 
 class AbstractIncomingRetrieveUseCase(metaclass=ABCMeta):
-    """
-    Base class for use cases retrieve incoming output.
-    """
+    """Base class for use cases retrieve incoming output."""
 
     @property
     @abstractmethod
@@ -49,9 +40,7 @@ class AbstractIncomingRetrieveUseCase(metaclass=ABCMeta):
 
 
 class AbstractIncomingUpdateUseCase(metaclass=ABCMeta):
-    """
-    Base class for use cases update incoming output.
-    """
+    """Base class for use cases update incoming output."""
 
     @property
     @abstractmethod
@@ -60,9 +49,7 @@ class AbstractIncomingUpdateUseCase(metaclass=ABCMeta):
 
 
 class AbstractIncomingDeleteUseCase(metaclass=ABCMeta):
-    """
-    Base class for use cases delete incoming output.
-    """
+    """Base class for use cases delete incoming output."""
 
     @property
     @abstractmethod

@@ -1,6 +1,7 @@
 from budget.api.v1.views.categories import RevenueCategoryListAPIView
-from budget.api.v1.views.revenue import *
-from django.urls import include, path
+from django.urls import path
+
+from budget.api.v1.views.revenue import RevenueListAPIView, RevenueCreateAPIView, RevenueDetailAPIView, RevenueUpdateAPIView, RevenueDeleteAPIView
 
 urlpatterns: list[str] = [
     path("list-categories/", RevenueCategoryListAPIView.as_view(), name="list-categories"),

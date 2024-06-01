@@ -1,4 +1,3 @@
-from typing import List
 
 from budget.domain.data_access.incoming import (
     AbstractBaseIncomingCreateDataAccess,
@@ -29,7 +28,7 @@ class IncomingCreateRepository(AbstractBaseIncomingCreateDataAccess):
 
 
 class IncomingListRepository(AbstractBaseIncomingListDataAccess):
-    def get_incomings(self, user_id) -> List[Incoming]:
+    def get_incomings(self, user_id) -> list[Incoming]:
         incoming_qs = IncomingModel.objects.all().filter(user_id=user_id)
         if not incoming_qs.exists():
             return None

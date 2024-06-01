@@ -1,13 +1,10 @@
 from abc import ABCMeta, abstractmethod
-from typing import List
 
 from budget.domain.entities.revenue import Revenue
 
 
 class AbstractRevenueUseCase(metaclass=ABCMeta):
-    """
-    Base class for use cases revenue output.
-    """
+    """Base class for use cases revenue output."""
 
     @property
     @abstractmethod
@@ -16,9 +13,7 @@ class AbstractRevenueUseCase(metaclass=ABCMeta):
 
 
 class AbstractRevenueCreateUseCase(metaclass=ABCMeta):
-    """
-    Base class for use cases create revenue output.
-    """
+    """Base class for use cases create revenue output."""
 
     @property
     @abstractmethod
@@ -27,20 +22,16 @@ class AbstractRevenueCreateUseCase(metaclass=ABCMeta):
 
 
 class AbstractRevenueListUseCase(metaclass=ABCMeta):
-    """
-    Base class for use cases list revenues output.
-    """
+    """Base class for use cases list revenues output."""
 
     @property
     @abstractmethod
-    def execute(self) -> List[Revenue]:
+    def execute(self) -> list[Revenue]:
         pass
 
 
 class AbstractRevenueRetrieveUseCase(metaclass=ABCMeta):
-    """
-    Base class for use cases retrieve revenue output.
-    """
+    """Base class for use cases retrieve revenue output."""
 
     @property
     @abstractmethod
@@ -49,9 +40,7 @@ class AbstractRevenueRetrieveUseCase(metaclass=ABCMeta):
 
 
 class AbstractRevenueUpdateUseCase(metaclass=ABCMeta):
-    """
-    Base class for use cases update revenue output.
-    """
+    """Base class for use cases update revenue output."""
 
     @property
     @abstractmethod
@@ -60,9 +49,7 @@ class AbstractRevenueUpdateUseCase(metaclass=ABCMeta):
 
 
 class AbstractRevenueDeleteUseCase(metaclass=ABCMeta):
-    """
-    Base class for use cases delete revenue output.
-    """
+    """Base class for use cases delete revenue output."""
 
     @property
     @abstractmethod

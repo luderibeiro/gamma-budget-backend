@@ -1,13 +1,10 @@
 from abc import ABCMeta, abstractmethod
-from typing import List
 
 from budget.domain.entities.incoming import Incoming
 
 
 class AbstractBaseIncomingCreateDataAccess(metaclass=ABCMeta):
-    """
-    Base class for incoming create data access.
-    """
+    """Base class for incoming create data access."""
 
     @abstractmethod
     def create_incoming(self, user_id: int) -> Incoming:
@@ -15,19 +12,15 @@ class AbstractBaseIncomingCreateDataAccess(metaclass=ABCMeta):
 
 
 class AbstractBaseIncomingListDataAccess(metaclass=ABCMeta):
-    """
-    Base class for incoming list data access.
-    """
+    """Base class for incoming list data access."""
 
     @abstractmethod
-    def get_incomings(self, user_id: int) -> List[Incoming]:
+    def get_incomings(self, user_id: int) -> list[Incoming]:
         pass
 
 
 class AbstractBaseIncomingRetrieveDataAccess(metaclass=ABCMeta):
-    """
-    Base class for incoming retrieve data access.
-    """
+    """Base class for incoming retrieve data access."""
 
     @abstractmethod
     def get_incoming(self, incoming_id: int, user_id: int) -> Incoming:
@@ -35,9 +28,7 @@ class AbstractBaseIncomingRetrieveDataAccess(metaclass=ABCMeta):
 
 
 class AbstractBaseIncomingUpdateDataAccess(metaclass=ABCMeta):
-    """
-    Base class for incoming update data access.
-    """
+    """Base class for incoming update data access."""
 
     @abstractmethod
     def get_incoming(self, incoming_id: int, user_id: int) -> Incoming:
@@ -49,9 +40,7 @@ class AbstractBaseIncomingUpdateDataAccess(metaclass=ABCMeta):
 
 
 class AbstractBaseIncomingDeleteDataAccess(metaclass=ABCMeta):
-    """
-    Base class for incoming delete data access.
-    """
+    """Base class for incoming delete data access."""
 
     @abstractmethod
     def get_incoming(self, incoming_id: int, user_id: int) -> Incoming:

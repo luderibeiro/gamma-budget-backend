@@ -69,9 +69,7 @@ class IncomingListUseCase(
     GetOutputResponseUseCaseMixin,
     ValidateOutputResponseUseCaseMixin,
 ):
-    """
-    Use case to list all incomings.
-    """
+    """Use case to list all incomings."""
 
     data_access: AbstractBaseIncomingListDataAccess = None
     output_response: AbstractBaseOutput = None
@@ -146,9 +144,7 @@ class IncomingUpdateUseCase(
         self.data = data
 
     def execute(self):
-        updated_incoming = self.data_access().update_incoming(
-            user_id=self.user_id, incoming_id=self.incoming_id, data=self.data
-        )
+        updated_incoming = self.data_access().update_incoming(user_id=self.user_id, incoming_id=self.incoming_id, data=self.data)
         if not updated_incoming:
             return self._build_output(incoming={"message": "Incoming not found."})
         incoming = updated_incoming.to_dict()

@@ -1,5 +1,6 @@
+from django.db import migrations
+
 from budget.models import IncomingCategory, RevenueCategory
-from django.db import migrations, transaction
 
 
 def create_categories(apps, schema_editor):
@@ -13,17 +14,11 @@ def create_categories(apps, schema_editor):
     RevenueCategory.objects.bulk_create(
         [
             RevenueCategory(name="Alimentação", description="Categoria de despesa de Alimentação"),
-            RevenueCategory(
-                name="Assinaturas e serviços", description="Categoria de despesa de Assinaturas e serviços"
-            ),
+            RevenueCategory(name="Assinaturas e serviços", description="Categoria de despesa de Assinaturas e serviços"),
             RevenueCategory(name="Casa", description="Categoria de despesa de Casa"),
             RevenueCategory(name="Compras", description="Categoria de despesa de Compras"),
-            RevenueCategory(
-                name="Cuidados pessoais", description="Categoria de despesa de Cuidados pessoais"
-            ),
-            RevenueCategory(
-                name="Dívidas e empréstimos", description="Categoria de despesa de Dívidas e empréstimos"
-            ),
+            RevenueCategory(name="Cuidados pessoais", description="Categoria de despesa de Cuidados pessoais"),
+            RevenueCategory(name="Dívidas e empréstimos", description="Categoria de despesa de Dívidas e empréstimos"),
             RevenueCategory(name="Educação", description="Categoria de despesa de Educação"),
             RevenueCategory(name="Família", description="Categoria de despesa de Família"),
             RevenueCategory(name="Impostos", description="Categoria de despesa de Impostos"),

@@ -1,3 +1,5 @@
+from typing import ClassVar
+
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
@@ -39,7 +41,7 @@ class UserSerializer(serializers.ModelSerializer):
             "groups",
         )
         read_only_fields = ("first_name", "last_name", "is_active", "groups")
-        extra_kwargs = {
+        extra_kwargs: ClassVar[dict[str, dict[str, bool | list]]] = {
             "email": {"required": False, "validators": []},
             "password": {
                 "required": True,
@@ -158,9 +160,7 @@ class UserAlterPasswordSerializer(serializers.ModelSerializer):
 
 class UserCreateSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(required=True)
-    password = serializers.CharField(
-        write_only=True, required=True, min_length=6, allow_blank=False
-    )
+    password = serializers.CharField(write_only=True, required=True, min_length=6, allow_blank=False)
 
     class Meta:
         model = User
@@ -171,7 +171,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
             "groups",
         )
         read_only_fields = ("id", "groups")
-        extra_kwargs = {
+        extra_kwargs: ClassVar[dict[str, dict[str, bool]]] = {
             "password": {
                 "required": True,
                 "write_only": True,

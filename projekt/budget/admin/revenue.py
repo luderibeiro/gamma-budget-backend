@@ -1,5 +1,6 @@
-from budget.models import Installment, Recurring, Revenue
 from django.contrib import admin
+
+from budget.models import Installment, Recurring, Revenue
 
 
 class RevenueAdmin(admin.ModelAdmin):

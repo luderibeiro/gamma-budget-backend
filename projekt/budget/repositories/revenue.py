@@ -1,4 +1,3 @@
-from typing import List
 
 from budget.domain.data_access.revenue import (
     AbstractBaseRevenueCreateDataAccess,
@@ -33,7 +32,7 @@ class RevenueCreateRepository(AbstractBaseRevenueCreateDataAccess):
 
 
 class RevenueListRepository(AbstractBaseRevenueListDataAccess):
-    def get_revenues(self, user_id) -> List[Revenue]:
+    def get_revenues(self, user_id) -> list[Revenue]:
         revenue_qs = RevenueModel.objects.all().filter(user_id=user_id)
         if not revenue_qs.exists():
             return None
