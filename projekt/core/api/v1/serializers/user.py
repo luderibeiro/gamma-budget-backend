@@ -159,10 +159,30 @@ class UserAlterPasswordSerializer(serializers.ModelSerializer):
 
 
 class UserCreateSerializer(serializers.ModelSerializer):
+    """
+    Serializer for creating a user.
+
+    Attributes:
+    ----------
+        email (serializers.EmailField): The email field.
+        password (serializers.CharField): The password field.
+    """
+
     email = serializers.EmailField(required=True)
     password = serializers.CharField(write_only=True, required=True, min_length=6, allow_blank=False)
 
     class Meta:
+        """
+        Metadata for the serializer.
+
+        Attributes:
+        ----------
+            model (User): The User model.
+            fields (tuple): The fields to include in the serialization.
+            read_only_fields (tuple): The read-only fields.
+            extra_kwargs (dict): Extra keyword arguments for fields.
+        """
+
         model = User
         fields = (
             "id",
@@ -171,7 +191,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
             "groups",
         )
         read_only_fields = ("id", "groups")
-        extra_kwargs: ClassVar[dict[str, dict[str, bool]]] = {
+        extra_kwargs: ClassVar[dict[str, dict]] = {
             "password": {
                 "required": True,
                 "write_only": True,
@@ -179,6 +199,17 @@ class UserCreateSerializer(serializers.ModelSerializer):
         }
 
     def create(self, validated_data):
+        """
+        Method to create a user.
+
+        Args:
+        ----
+            validated_data (dict): The validated data for user creation.
+
+        Returns:
+        -------
+            User: The created user instance.
+        """
         username = validated_data.get("email").split("@")[0]
         validated_data["username"] = username
         user = User.objects.create_user(**validated_data)

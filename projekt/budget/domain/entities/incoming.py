@@ -2,6 +2,18 @@ import datetime
 
 
 class Incoming:
+    """
+    Class representing an incoming budget record.
+
+    Attributes:
+    ----------
+        name (str): The name of the incoming record.
+        description (str): The description of the incoming record.
+        amount (float): The amount of the incoming record.
+        launch_date (datetime.datetime): The launch date of the incoming record.
+        category (int): The category of the incoming record.
+    """
+
     def __init__(
         self,
         id: str,
@@ -12,6 +24,17 @@ class Incoming:
         launch_date: datetime.datetime,
         category: int,
     ) -> None:
+        """
+        Initialize the incoming record.
+
+        Args:
+        ----
+            name (str): The name of the incoming record.
+            description (str): The description of the incoming record.
+            amount (float): The amount of the incoming record.
+            launch_date (datetime.datetime): The launch date of the incoming record.
+            category (int): The category of the incoming record.
+        """
         self.id = id
         self.user_id = user_id
         self.name = name
@@ -21,6 +44,13 @@ class Incoming:
         self.category = category
 
     def to_dict(self) -> dict:
+        """
+        Convert the incoming record to a dictionary.
+
+        Returns:
+        -------
+            dict: A dictionary representation of the incoming record.
+        """
         return {
             "id": self.id,
             "user_id": self.user_id,

@@ -1,4 +1,3 @@
-
 from budget.domain.data_access.incoming import (
     AbstractBaseIncomingCreateDataAccess,
     AbstractBaseIncomingDeleteDataAccess,
@@ -13,7 +12,20 @@ from budget.repositories.parsers.incoming import parse_incoming_model_to_entity
 
 
 class IncomingCreateRepository(AbstractBaseIncomingCreateDataAccess):
+    """Repository for creating Incoming instances."""
+
     def create_incoming(self, data: dict, user_id: int) -> Incoming | None:
+        """Create an Incoming instance.
+
+        Args:
+        ----
+            data (dict): The data for creating the Incoming instance.
+            user_id (int): The ID of the user creating the Incoming instance.
+
+        Returns:
+        -------
+            Incoming | None: The created Incoming instance, or None if creation failed.
+        """
         category = IncomingCategory.objects.get(id=data["category"])
         if not category:
             return None
@@ -28,7 +40,19 @@ class IncomingCreateRepository(AbstractBaseIncomingCreateDataAccess):
 
 
 class IncomingListRepository(AbstractBaseIncomingListDataAccess):
-    def get_incomings(self, user_id) -> list[Incoming] | None:
+    """Repository for listing Incoming instances."""
+
+    def get_incomings(self, user_id: int) -> list[Incoming] | None:
+        """Get a list of Incoming instances for a user.
+
+        Args:
+        ----
+            user_id (int): The ID of the user.
+
+        Returns:
+        -------
+            list[Incoming] | None: A list of Incoming instances, or None if no instances found.
+        """
         incoming_qs = IncomingModel.objects.all().filter(user_id=user_id)
         if not incoming_qs.exists():
             return None
@@ -37,7 +61,20 @@ class IncomingListRepository(AbstractBaseIncomingListDataAccess):
 
 
 class IncomingRetrieveRepository(AbstractBaseIncomingRetrieveDataAccess):
+    """Repository for retrieving an Incoming instance."""
+
     def get_incoming(self, incoming_id: int, user_id: int) -> Incoming | None:
+        """Retrieve an Incoming instance by its ID and user ID.
+
+        Args:
+        ----
+            incoming_id (int): The ID of the Incoming instance.
+            user_id (int): The ID of the user.
+
+        Returns:
+        -------
+            Incoming | None: The retrieved Incoming instance, or None if not found.
+        """
         incoming = IncomingModel.objects.filter(id=incoming_id, user_id=user_id)
         if not incoming.exists():
             return None
@@ -45,13 +82,38 @@ class IncomingRetrieveRepository(AbstractBaseIncomingRetrieveDataAccess):
 
 
 class IncomingUpdateRepository(AbstractBaseIncomingUpdateDataAccess):
+    """Repository for updating an Incoming instance."""
+
     def get_incoming(self, incoming_id: int, user_id: int) -> Incoming | None:
+        """Retrieve an Incoming instance by its ID and user ID.
+
+        Args:
+        ----
+            incoming_id (int): The ID of the Incoming instance.
+            user_id (int): The ID of the user.
+
+        Returns:
+        -------
+            Incoming | None: The retrieved Incoming instance, or None if not found.
+        """
         incoming = IncomingModel.objects.filter(id=incoming_id)
         if not incoming.exists():
             return None
         return parse_incoming_model_to_entity(incoming)
 
     def update_incoming(self, user_id: int, incoming_id: str, data: dict) -> Incoming | None:
+        """Update an Incoming instance.
+
+        Args:
+        ----
+            user_id (int): The ID of the user.
+            incoming_id (str): The ID of the Incoming instance.
+            data (dict): The data for updating the Incoming instance.
+
+        Returns:
+        -------
+            Incoming | None: The updated Incoming instance, or None if update failed.
+        """
         incoming = IncomingModel.objects.filter(id=incoming_id, user_id=user_id).first()
         category = IncomingCategory.objects.get(id=data["category"]) if data.get("category") else None
         if not incoming:
@@ -65,13 +127,37 @@ class IncomingUpdateRepository(AbstractBaseIncomingUpdateDataAccess):
 
 
 class IncomingDeleteRepository(AbstractBaseIncomingDeleteDataAccess):
+    """Repository for deleting an Incoming instance."""
+
     def get_incoming(self, incoming_id: int, user_id: int) -> Incoming | None:
+        """Retrieve an Incoming instance by its ID and user ID.
+
+        Args:
+        ----
+            incoming_id (int): The ID of the Incoming instance.
+            user_id (int): The ID of the user.
+
+        Returns:
+        -------
+            Incoming | None: The retrieved Incoming instance, or None if not found.
+        """
         incoming = IncomingModel.objects.filter(id=incoming_id)
         if not incoming.exists():
             return None
         return parse_incoming_model_to_entity(incoming)
 
     def delete_incoming(self, user_id: int, incoming_id: str) -> bool:
+        """Delete an Incoming instance by its ID and user ID.
+
+        Args:
+        ----
+            user_id (int): The ID of the user.
+            incoming_id (str): The ID of the Incoming instance.
+
+        Returns:
+        -------
+            bool: True if the Incoming instance was deleted, False otherwise.
+        """
         incoming = IncomingModel.objects.filter(user_id=user_id, id=incoming_id)
         if not incoming.exists():
             return False

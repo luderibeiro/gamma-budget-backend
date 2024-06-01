@@ -1,7 +1,13 @@
 from budget.api.v1.views.categories import IncomingCategoryListAPIView
 from django.urls import path
 
-from budget.api.v1.views.incoming import IncomingListAPIView, IncomingCreateAPIView, IncomingDetailAPIView, IncomingUpdateAPIView, IncomingDeleteAPIView
+from budget.api.v1.views.incoming import (
+    IncomingCreateAPIView,
+    IncomingDeleteAPIView,
+    IncomingDetailAPIView,
+    IncomingListAPIView,
+    IncomingUpdateAPIView,
+)
 
 urlpatterns: list[str] = [
     path("list-categories/", IncomingCategoryListAPIView.as_view(), name="list-categories"),
