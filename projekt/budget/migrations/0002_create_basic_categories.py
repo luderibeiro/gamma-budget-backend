@@ -5,8 +5,8 @@ from django.db import migrations, transaction
 def create_categories(apps, schema_editor):
     IncomingCategory.objects.bulk_create(
         [
-            IncomingCategory(name="Salário", description="Salário pessoal"),
-            IncomingCategory(name="Investimento", description="Investimento pessoal"),
+            IncomingCategory(name="Salário", description="Receita referente ao salário"),
+            IncomingCategory(name="Investimento", description="Receita referente a investimentos"),
             IncomingCategory(name="Outros", description="Outros tipos de receita"),
         ]
     )
