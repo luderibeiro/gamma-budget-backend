@@ -1,3 +1,5 @@
+from typing import ClassVar
+
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 
@@ -118,4 +120,4 @@ class User(AbstractUser):
         return self.is_superuser
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS: list[str] = []
+    REQUIRED_FIELDS: ClassVar[list[str]] = []

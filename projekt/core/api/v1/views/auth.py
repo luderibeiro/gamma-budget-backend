@@ -10,11 +10,36 @@ User = get_user_model()
 
 
 class AuthView(generics.CreateAPIView):
+    """
+    View for user authentication.
+
+    Allows users to authenticate and obtain their user information.
+
+    Attributes:
+    ----------
+        queryset (QuerySet): The queryset for retrieving user objects.
+        serializer_class (Serializer): The serializer class for authentication.
+        permission_classes (list): The permission classes for allowing any user to authenticate.
+    """
+
     queryset = User.objects.all()
     serializer_class = AuthSerializer
     permission_classes = (AllowAny,)
 
     def post(self, request, *args, **kwargs):
+        """
+        Handle POST request for user authentication.
+
+        Args:
+        ----
+            request (Request): The request object.
+            *args: Variable length argument list.
+            **kwargs: Arbitrary keyword arguments.
+
+        Returns:
+        -------
+            Response: The response object.
+        """
         try:
             serializer = AuthSerializer(data=request.data)
             if serializer.is_valid():
