@@ -8,6 +8,7 @@ from budget.api.v1.views.revenue import (
     RevenueListAPIView,
     RevenueUpdateAPIView,
 )
+from budget.api.v1.views.revenue import RevenueCreateAPIView, RevenueDeleteAPIView, RevenueDetailAPIView, RevenueListAPIView, RevenueUpdateAPIView
 
 urlpatterns: list[str] = [
     path(

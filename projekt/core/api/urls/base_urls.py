@@ -1,7 +1,7 @@
 from django.urls import include, path
 
-from core.api.v1.views import auth as authViews
-from core.api.v1.views import user as userViews
+from core.api.v1.views import auth as auth_views
+from core.api.v1.views import user as user_views
 
 from core.api.v1.views import auth as auth_views
 from core.api.v1.views import user as user_views
