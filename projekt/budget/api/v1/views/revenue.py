@@ -1,14 +1,15 @@
 from datetime import date
 
+from rest_framework.permissions import AllowAny
+from rest_framework.views import APIView
+
 from budget.api.v1.mixins import (
     ExecuteUseCaseOnCreateMixin,
     ExecuteUseCaseOnDestroyMixin,
     ExecuteUseCaseOnGetMixin,
     ExecuteUseCaseOnPutMixin,
-    ExecuteUseCaseOnUpdateMixin,
 )
 from budget.api.v1.serializers.revenue import (
-    RevenueCategoryListSerializer,
     RevenueCreateSerializer,
     RevenueDeleteSerializer,
     RevenueDetailSerializer,
@@ -23,10 +24,6 @@ from budget.domain.use_cases import (
     RevenueRetrieveUseCase,
     RevenueUpdateUseCase,
 )
-from rest_framework import exceptions, status
-from rest_framework.permissions import AllowAny
-from rest_framework.response import Response
-from rest_framework.views import APIView
 
 
 class RevenueCreateAPIView(APIView, ExecuteUseCaseOnCreateMixin):
@@ -38,7 +35,7 @@ class RevenueCreateAPIView(APIView, ExecuteUseCaseOnCreateMixin):
 
     def get_use_case_kwargs(self, request, user_id, *args, **kwargs):
         data = {}
-        paid = True if request.data.get("paid") == "true" else False
+        paid = request.data.get("paid") == "true"
         data = {
             "user_id": user_id,
             "name": request.data.get("name"),

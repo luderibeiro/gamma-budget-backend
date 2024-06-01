@@ -1,11 +1,11 @@
-from typing import Generic, Type, TypeVar
+from typing import Generic, TypeVar
 
 DataAccessT = TypeVar("DataAccessT")
 GatewayT = TypeVar("GatewayT")
 
 
 class GetDataAccessUseCaseMixin(Generic[DataAccessT]):
-    data_access: Type[DataAccessT]
+    data_access: type[DataAccessT]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -22,7 +22,7 @@ class ValidateDataAccessUseCaseMixin:
     def _validate_isnull(self, _property):
         property_value = getattr(self, _property)
         if not property_value:
-            raise Exception("{} is not set".format(_property))
+            raise Exception(f"{_property} is not set")
 
         return property_value
 
@@ -52,7 +52,7 @@ class ValidateOutputResponseUseCaseMixin:
     def _validate_isnull(self, _property):
         property_value = getattr(self, _property)
         if not property_value:
-            raise Exception("{} is not set".format(_property))
+            raise Exception(f"{_property} is not set")
 
         return property_value
 
@@ -63,7 +63,7 @@ class ValidateOutputResponseUseCaseMixin:
     def _validate_isnull(self, _property):
         property_value = getattr(self, _property)
         if not property_value:
-            raise Exception("{} is not set".format(_property))
+            raise Exception(f"{_property} is not set")
 
         return property_value
 

@@ -1,5 +1,6 @@
-from budget.models import Incoming
 from django.contrib import admin
+
+from budget.models import Incoming
 
 
 class IncomingAdmin(admin.ModelAdmin):

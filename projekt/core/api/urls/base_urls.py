@@ -1,10 +1,11 @@
+from django.urls import include, path
+
 from core.api.v1.views import auth as authViews
 from core.api.v1.views import user as userViews
-from django.urls import include, path
 
 app_name = "core"
 
-user: list[str] = [
+user_paths: list[str] = [
     path(
         "user/list",
         userViews.UserListAPIView.as_view(),
@@ -27,10 +28,4 @@ user: list[str] = [
     ),
 ]
 
-urlpatterns: list[str] = [
-    path(
-        "v1/",
-        include("core.api.urls.v1_urls"),
-        name="v1",
-    ),
-] + user
+urlpatterns: list[str] = [path("v1/", include("core.api.urls.v1_urls"), name="v1"), *user_paths]

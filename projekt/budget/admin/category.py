@@ -1,5 +1,6 @@
-from budget.models import IncomingCategory, RevenueCategory
 from django.contrib import admin
+
+from budget.models import IncomingCategory, RevenueCategory
 
 
 class IncomingCategoryAdmin(admin.ModelAdmin):

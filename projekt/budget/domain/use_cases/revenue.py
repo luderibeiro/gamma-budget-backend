@@ -76,9 +76,7 @@ class RevenueListUseCase(
     GetOutputResponseUseCaseMixin,
     ValidateOutputResponseUseCaseMixin,
 ):
-    """
-    Use case to list all revenues.
-    """
+    """Use case to list all revenues."""
 
     data_access: AbstractBaseRevenueListDataAccess = None
     output_response: AbstractBaseOutput = None
@@ -154,9 +152,7 @@ class RevenueUpdateUseCase(
         self.data = data
 
     def execute(self):
-        updated_revenue = self.data_access().update_revenue(
-            user_id=self.user_id, revenue_id=self.revenue_id, data=self.data
-        )
+        updated_revenue = self.data_access().update_revenue(user_id=self.user_id, revenue_id=self.revenue_id, data=self.data)
         if not updated_revenue:
             return self._build_output(revenue={"message": "Revenue not found."})
         revenue = updated_revenue.to_dict()

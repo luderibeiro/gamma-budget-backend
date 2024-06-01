@@ -3,9 +3,7 @@ from rest_framework.response import Response
 
 
 class ExecuteUseCaseOnGetMixin:
-    """
-    Mixin para executar casos de uso ao lidar com solicitações GET.
-    """
+    """Mixin para executar casos de uso ao lidar com solicitações GET."""
 
     def get(self, request, *args, **kwargs):
         """
@@ -142,9 +140,7 @@ class ExecuteUseCaseOnGetMixin:
                     if isinstance(value, dict | list):
                         nested_update(value)
                     elif key in self.image_fields:
-                        output_response[key] = (
-                            f"{request.scheme}://{request.get_host()}{value}" if value else None
-                        )
+                        output_response[key] = f"{request.scheme}://{request.get_host()}{value}" if value else None
             elif isinstance(output_response, list):
                 for item in output_response:
                     nested_update(item)
@@ -153,9 +149,7 @@ class ExecuteUseCaseOnGetMixin:
         return response
 
     class Http400Error(Exception):
-        """
-        Exceção para erros de solicitação HTTP 400.
-        """
+        """Exceção para erros de solicitação HTTP 400."""
 
         def __init__(self, message):
             super().__init__(message)

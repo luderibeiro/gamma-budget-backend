@@ -2,9 +2,7 @@ from abc import ABCMeta, abstractmethod
 
 
 class AbstractBaseOutput(metaclass=ABCMeta):
-    """
-    Base class for use cases output.
-    """
+    """Base class for use cases output."""
 
     @property
     @abstractmethod

@@ -1,12 +1,11 @@
-from budget.domain.use_cases.base.base import AbstractBaseOutput
 from rest_framework import status
 from rest_framework.response import Response
 
+from budget.domain.use_cases.base.base import AbstractBaseOutput
+
 
 class DjangoApiOutput(AbstractBaseOutput):
-    """
-    Class responsible for API output.
-    """
+    """Class responsible for API output."""
 
     def __init__(self, *args, **kwargs):
         self._data = None

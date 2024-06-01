@@ -1,7 +1,7 @@
 from typing import ClassVar
 
 from django.contrib.auth import get_user_model
-from rest_framework import filters, generics
+from rest_framework import generics
 from rest_framework.permissions import AllowAny, IsAdminUser
 
 from ..serializers.user import (
