@@ -32,11 +32,7 @@ class ExecuteUseCaseOnGetMixin:
         """
         try:
             uc = self.execute_use_case_retrieve(request, *args, **kwargs)
-            response = (
-                uc.get_response()
-                if hasattr(uc, "get_response")
-                else Response(uc.data, status=status.HTTP_200_OK)
-            )
+            response = uc.get_response() if hasattr(uc, "get_response") else Response(uc.data, status=status.HTTP_200_OK)
             if self.image_fields:
                 response = self.apply_domain_host_in_image_fields(
                     request, response, *args, **kwargs
@@ -524,9 +520,7 @@ class ExecuteUseCaseOnCreateMixin:
             *args: Argumentos posicionais adicionais.
             **kwargs: Argumentos de palavra-chave adicionais.
         """
-        self.serializer_instance = self.get_serializer_create()(
-            data=request.data, context={"request": request}
-        )
+        self.serializer_instance = self.get_serializer_create()(data=request.data, context={"request": request})
         if self.serializer_instance.is_valid():
             try:
                 uc = self.execute_use_case_create(

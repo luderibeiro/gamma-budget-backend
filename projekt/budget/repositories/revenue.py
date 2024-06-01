@@ -1,3 +1,4 @@
+
 from budget.domain.data_access.revenue import (
     AbstractBaseRevenueCreateDataAccess,
     AbstractBaseRevenueDeleteDataAccess,

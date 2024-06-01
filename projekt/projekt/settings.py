@@ -171,9 +171,7 @@ REST_FRAMEWORK: dict[str, Any] = {
 }
 
 if DEBUG:
-    REST_FRAMEWORK["DEFAULT_AUTHENTICATION_CLASSES"].append(
-        "rest_framework.authentication.SessionAuthentication"
-    )
+    REST_FRAMEWORK["DEFAULT_AUTHENTICATION_CLASSES"].append("rest_framework.authentication.SessionAuthentication")
 
 # Admin urls configuration
 LOGIN_URL = "/admin/login/"
