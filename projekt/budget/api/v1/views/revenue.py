@@ -187,7 +187,7 @@ class RevenueDeleteAPIView(APIView, ExecuteUseCaseOnDestroyMixin):
     permission_classes = (AllowAny,)
     serializer = RevenueDeleteSerializer
     use_case_destroy = RevenueDeleteUseCase
-    use_case_output = DjangoApiOutput
+    use_case_output: type[DjangoApiOutput] = DjangoApiOutput
 
     def get_use_case_kwargs(self, request, user_id, id, *args, **kwargs):
         """

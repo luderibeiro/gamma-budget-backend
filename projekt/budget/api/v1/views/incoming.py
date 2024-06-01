@@ -173,7 +173,7 @@ class IncomingDeleteAPIView(APIView, ExecuteUseCaseOnDestroyMixin):
     permission_classes = (AllowAny,)
     serializer = IncomingDeleteSerializer
     use_case_destroy = IncomingDeleteUseCase
-    use_case_output = DjangoApiOutput
+    use_case_output: type[DjangoApiOutput] | None = DjangoApiOutput
 
     def get_use_case_kwargs(self, request, user_id, id, *args, **kwargs):
         """

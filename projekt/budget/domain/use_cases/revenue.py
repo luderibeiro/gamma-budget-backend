@@ -39,8 +39,8 @@ class RevenueCreateUseCase(
         ValidateOutputResponseUseCaseMixin
     """
 
-    data_access: AbstractBaseRevenueCreateDataAccess | None = None
-    output_response: AbstractBaseOutput | None = None
+    data_access: type[AbstractBaseRevenueCreateDataAccess] | None = None
+    output_response: type[AbstractBaseOutput] | None = None
 
     def __init__(
         self,
@@ -122,8 +122,8 @@ class RevenueListUseCase(
 ):
     """Use case to list all revenues."""
 
-    data_access: AbstractBaseRevenueListDataAccess = None
-    output_response: AbstractBaseOutput = None
+    data_access: type[AbstractBaseRevenueListDataAccess] | None = None
+    output_response: type[AbstractBaseOutput] | None = None
 
     def __init__(self, user_id: int):
         super().__init__()
@@ -163,8 +163,8 @@ class RevenueRetrieveUseCase(
         ValidateOutputResponseUseCaseMixin
     """
 
-    data_access: AbstractBaseRevenueRetrieveDataAccess = None
-    output_response: AbstractBaseOutput = None
+    data_access: type[AbstractBaseRevenueRetrieveDataAccess] | None = None
+    output_response: type[AbstractBaseOutput] | None = None
 
     def __init__(self, user_id: int, revenue_id: int):
         """
@@ -229,8 +229,8 @@ class RevenueUpdateUseCase(
         ValidateOutputResponseUseCaseMixin
     """
 
-    data_access: AbstractBaseRevenueUpdateDataAccess = None
-    output_response: AbstractBaseOutput = None
+    data_access: type[AbstractBaseRevenueUpdateDataAccess] | None = None
+    output_response: type[AbstractBaseOutput] | None = None
 
     def __init__(
         self,
@@ -301,8 +301,8 @@ class RevenueDeleteUseCase(
         ValidateOutputResponseUseCaseMixin
     """
 
-    data_access: AbstractBaseRevenueDeleteDataAccess = None
-    output_response: AbstractBaseOutput = None
+    data_access: type[AbstractBaseRevenueDeleteDataAccess] | None = None
+    output_response: type[AbstractBaseOutput] | None = None
 
     def __init__(self, user_id: int, revenue_id: int):
         """

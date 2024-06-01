@@ -1,3 +1,5 @@
+from typing import Any
+
 from budget.domain.data_access.incoming import (
     AbstractBaseIncomingCreateDataAccess,
     AbstractBaseIncomingDeleteDataAccess,
@@ -39,8 +41,8 @@ class IncomingCreateUseCase(
         ValidateOutputResponseUseCaseMixin
     """
 
-    data_access: AbstractBaseIncomingCreateDataAccess = None
-    output_response: AbstractBaseOutput = None
+    data_access: type[AbstractBaseIncomingCreateDataAccess] | None = None
+    output_response: type[AbstractBaseOutput] | None = None
 
     def __init__(
         self,
@@ -112,8 +114,8 @@ class IncomingListUseCase(
 ):
     """Use case to list all incomings."""
 
-    data_access: AbstractBaseIncomingListDataAccess = None
-    output_response: AbstractBaseOutput = None
+    data_access: type[AbstractBaseIncomingListDataAccess] | None = None
+    output_response: type[AbstractBaseOutput] | None = None
 
     def __init__(self, user_id: int):
         super().__init__()
@@ -153,8 +155,8 @@ class IncomingRetrieveUseCase(
         ValidateOutputResponseUseCaseMixin
     """
 
-    data_access: AbstractBaseIncomingRetrieveDataAccess = None
-    output_response: AbstractBaseOutput = None
+    data_access: type[AbstractBaseIncomingRetrieveDataAccess] | None = None
+    output_response: type[AbstractBaseOutput] | None = None
 
     def __init__(self, user_id: int, incoming_id: int):
         """
@@ -168,7 +170,7 @@ class IncomingRetrieveUseCase(
         super().__init__()
         self.user_id = user_id
         self.incoming_id = incoming_id
-        self.result = []
+        self.result: list[Any] = []
 
     def execute(self):
         """
@@ -218,8 +220,8 @@ class IncomingUpdateUseCase(
         ValidateOutputResponseUseCaseMixin
     """
 
-    data_access: AbstractBaseIncomingUpdateDataAccess = None
-    output_response: AbstractBaseOutput = None
+    data_access: type[AbstractBaseIncomingUpdateDataAccess] | None = None
+    output_response: type[AbstractBaseOutput] | None = None
 
     def __init__(
         self,
@@ -290,8 +292,8 @@ class IncomingDeleteUseCase(
         ValidateOutputResponseUseCaseMixin
     """
 
-    data_access: AbstractBaseIncomingDeleteDataAccess | None = None
-    output_response: AbstractBaseOutput | None = None
+    data_access: type[AbstractBaseIncomingDeleteDataAccess] | None = None
+    output_response: type[AbstractBaseOutput] | None = None
 
     def __init__(self, user_id: int, incoming_id: int):
         """

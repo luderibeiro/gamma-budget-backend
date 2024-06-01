@@ -1,16 +1,20 @@
+from typing import Any
+
 from rest_framework import status
 from rest_framework.response import Response
+
+from budget.api_output import DjangoApiOutput
 
 
 class ExecuteUseCaseOnGetMixin:
     """Mixin para executar casos de uso ao lidar com solicitações GET."""
 
-    use_case = None
-    use_case_retrieve = None
-    use_case_output = None
-    use_case_output_retrieve = None
-    image_fields = None
-    query_serializer = None
+    use_case: Any | None = None
+    use_case_retrieve: Any | None = None
+    use_case_output: Any | None = None
+    use_case_output_retrieve: Any | None = None
+    image_fields: Any | None = None
+    query_serializer: Any | None = None
 
     def get(self, request, *args, **kwargs):
         """
@@ -168,11 +172,11 @@ class ExecuteUseCaseOnGetMixin:
 class ExecuteUseCaseOnDestroyMixin:
     """Mixin para executar casos de uso ao lidar com solicitações DELETE."""
 
-    use_case = None
-    use_case_destroy = None
-    use_case_output = None
-    use_case_output_destroy = None
-    image_fields = None
+    use_case: Any | None = None
+    use_case_destroy: Any | None = None
+    use_case_output: type[DjangoApiOutput] | None = None
+    use_case_output_destroy: Any | None = None
+    image_fields: Any | None = None
 
     def delete(self, request, *args, **kwargs):
         """
@@ -415,9 +419,9 @@ class ExecuteUseCaseOnUpdateMixin:
 class ExecuteUseCaseOnPutMixin:
     """Mixin para executar casos de uso ao lidar com solicitações PUT."""
 
-    use_case = None
-    use_case_output = None
-    image_fields = None
+    use_case: Any | None = None
+    use_case_output: Any | None = None
+    image_fields: Any | None = None
 
     def put(self, request, *args, **kwargs):
         """
@@ -465,14 +469,14 @@ class ExecuteUseCaseOnPutMixin:
 class ExecuteUseCaseOnCreateMixin:
     """Mixin para executar casos de uso ao lidar com solicitações POST."""
 
-    use_case = None
-    use_case_create = None
-    use_case_output = None
+    use_case: Any | None = None
+    use_case_create: Any | None = None
+    use_case_output: type[DjangoApiOutput] | None = None
     use_case_output_create = None
-    image_fields = None
-    serializer = None
-    serializer_create = None
-    serializer_instance = None
+    image_fields: Any | None = None
+    serializer: Any | None = None
+    serializer_create: Any | None = None
+    serializer_instance: Any | None = None
 
     def post(self, request, *args, **kwargs):
         """
