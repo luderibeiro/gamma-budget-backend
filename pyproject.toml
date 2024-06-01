@@ -51,6 +51,9 @@ lint.ignore = [
     "TCH003",
 ]
 
+lint.extend-per-file-ignores ={"__init__.py"=["F403"], "*/migrations/*"=["D", "F", "RUF"]}
+
+
 [tool.ruff.format]
 docstring-code-format = true
 
