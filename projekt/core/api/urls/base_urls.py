@@ -1,4 +1,5 @@
-from core.api.v1.views import user
+from core.api.v1.views import auth as authViews
+from core.api.v1.views import user as userViews
 from django.urls import include, path
 
 app_name = "core"
@@ -6,18 +7,23 @@ app_name = "core"
 user: list[str] = [
     path(
         "user/list",
-        user.UserListAPIView.as_view(),
+        userViews.UserListAPIView.as_view(),
         name="user_list",
     ),
     path(
         "user/alter_password/<int:pk>/",
-        user.UserAlterPasswordAPIView.as_view(),
+        userViews.UserAlterPasswordAPIView.as_view(),
         name="user_alter_password",
     ),
     path(
         "user/register",
-        user.UserCreateAPIView.as_view(),
+        userViews.UserCreateAPIView.as_view(),
         name="user_register",
+    ),
+    path(
+        "auth",
+        authViews.AuthView.as_view(),
+        name="auth",
     ),
 ]
 

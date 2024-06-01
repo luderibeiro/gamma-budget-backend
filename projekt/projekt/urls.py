@@ -25,6 +25,7 @@ urlpatterns = [
     path(f"{settings.ADMIN_DEFAULT_PATH}/", admin.site.urls),
     path("o/", include("oauth2_provider.urls", namespace="oauth2_provider")),
     path("", include("core.api.urls.base_urls")),
+    path("budget/", include("budget.api.urls.base_urls")),
 ]
 
 if settings.DEBUG:
