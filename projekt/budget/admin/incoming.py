@@ -1,10 +1,22 @@
+from typing import ClassVar
+
 from django.contrib import admin
 
 from budget.models import Incoming
 
 
 class IncomingAdmin(admin.ModelAdmin):
-    list_display = [
+    """Admin interface for the Incoming model.
+
+    Attributes:
+    ----------
+        list_display (list[str]): Fields to display in the list view.
+        list_filter (list[str]): Fields to filter by in the list view.
+        search_fields (list[str]): Fields to search by in the list view.
+        ordering (list[str]): Default ordering for the list view.
+    """
+
+    list_display: ClassVar[list[str]] = [
         "id",
         "user_id",
         "name",
@@ -12,17 +24,17 @@ class IncomingAdmin(admin.ModelAdmin):
         "category",
         "launch_date",
     ]
-    list_filter = [
+    list_filter: ClassVar[list[str]] = [
         "user_id",
         "category",
     ]
-    search_fields = [
+    search_fields: ClassVar[list[str]] = [
         "id",
         "user_id",
         "name",
         "description",
     ]
-    ordering = [
+    ordering: ClassVar[list[str]] = [
         "user_id",
         "launch_date",
     ]

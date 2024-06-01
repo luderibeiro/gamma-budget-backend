@@ -253,6 +253,8 @@ class ExecuteUseCaseOnDestroyMixin:
         return self.use_case_output_destroy if self.use_case_output_destroy else self.use_case_output
 
     class Http400Error(Exception):
+        """Exceção para erros de solicitação HTTP 400."""
+
         pass
 
 
@@ -320,7 +322,7 @@ class ExecuteUseCaseOnUpdateMixin:
                 status=status.HTTP_400_BAD_REQUEST,
             )
         except Exception as e:
-            if hasattr(e, "code") and type(e.code) == int and e.code < 500:
+            if hasattr(e, "code") and isinstance(type(e.code), int) and e.code < 500:
                 return Response(
                     {"detail": e.args[0], "exception_name": e.__class__.__name__},
                     status=e.code,
@@ -405,6 +407,8 @@ class ExecuteUseCaseOnUpdateMixin:
         return response
 
     class Http400Error(Exception):
+        """Exceção para erros de solicitação HTTP 400."""
+
         pass
 
 
@@ -453,6 +457,8 @@ class ExecuteUseCaseOnPutMixin:
         return {}
 
     class Http400Error(Exception):
+        """Exceção para erros de solicitação HTTP 400."""
+
         pass
 
 
@@ -481,7 +487,7 @@ class ExecuteUseCaseOnCreateMixin:
         self.serializer_instance = self.get_serializer_create()(data=request.data, context={"request": request})
         if self.serializer_instance.is_valid():
             try:
-                uc = self.execute_use_case_create(request, data=self.serializer_instance.data, *args, **kwargs)
+                uc = self.execute_use_case_create(request, *args, data=self.serializer_instance.data, **kwargs)
                 response = uc.get_response() if hasattr(uc, "get_response") else Response(uc.data, status=status.HTTP_200_OK)
                 if response.data is None:
                     return Response(
@@ -566,4 +572,6 @@ class ExecuteUseCaseOnCreateMixin:
         raise
 
     class Http400Error(Exception):
+        """Exceção para erros de solicitação HTTP 400."""
+
         pass
