@@ -13,7 +13,7 @@ from budget.repositories.parsers.incoming import parse_incoming_model_to_entity
 
 
 class IncomingCreateRepository(AbstractBaseIncomingCreateDataAccess):
-    def create_incoming(self, data: dict, user_id: int) -> Incoming:
+    def create_incoming(self, data: dict, user_id: int) -> Incoming | None:
         category = IncomingCategory.objects.get(id=data["category"])
         if not category:
             return None
@@ -28,7 +28,7 @@ class IncomingCreateRepository(AbstractBaseIncomingCreateDataAccess):
 
 
 class IncomingListRepository(AbstractBaseIncomingListDataAccess):
-    def get_incomings(self, user_id) -> list[Incoming]:
+    def get_incomings(self, user_id) -> list[Incoming] | None:
         incoming_qs = IncomingModel.objects.all().filter(user_id=user_id)
         if not incoming_qs.exists():
             return None
@@ -37,7 +37,7 @@ class IncomingListRepository(AbstractBaseIncomingListDataAccess):
 
 
 class IncomingRetrieveRepository(AbstractBaseIncomingRetrieveDataAccess):
-    def get_incoming(self, incoming_id: int, user_id: int) -> Incoming:
+    def get_incoming(self, incoming_id: int, user_id: int) -> Incoming | None:
         incoming = IncomingModel.objects.filter(id=incoming_id, user_id=user_id)
         if not incoming.exists():
             return None
@@ -45,13 +45,13 @@ class IncomingRetrieveRepository(AbstractBaseIncomingRetrieveDataAccess):
 
 
 class IncomingUpdateRepository(AbstractBaseIncomingUpdateDataAccess):
-    def get_incoming(self, incoming_id: int, user_id: int) -> Incoming:
+    def get_incoming(self, incoming_id: int, user_id: int) -> Incoming | None:
         incoming = IncomingModel.objects.filter(id=incoming_id)
         if not incoming.exists():
             return None
         return parse_incoming_model_to_entity(incoming)
 
-    def update_incoming(self, user_id: int, incoming_id: str, data: dict) -> Incoming:
+    def update_incoming(self, user_id: int, incoming_id: str, data: dict) -> Incoming | None:
         incoming = IncomingModel.objects.filter(id=incoming_id, user_id=user_id).first()
         category = IncomingCategory.objects.get(id=data["category"]) if data.get("category") else None
         if not incoming:
@@ -65,7 +65,7 @@ class IncomingUpdateRepository(AbstractBaseIncomingUpdateDataAccess):
 
 
 class IncomingDeleteRepository(AbstractBaseIncomingDeleteDataAccess):
-    def get_incoming(self, incoming_id: int, user_id: int) -> Incoming:
+    def get_incoming(self, incoming_id: int, user_id: int) -> Incoming | None:
         incoming = IncomingModel.objects.filter(id=incoming_id)
         if not incoming.exists():
             return None
