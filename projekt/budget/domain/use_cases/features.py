@@ -58,14 +58,3 @@ class ValidateOutputResponseUseCaseMixin:
 
     def validate(self):
         self._validate_isnull("output_response")
-        self.validate()
-
-    def _validate_isnull(self, _property):
-        property_value = getattr(self, _property)
-        if not property_value:
-            raise Exception(f"{_property} is not set")
-
-        return property_value
-
-    def validate(self):
-        self._validate_isnull("output_response")
