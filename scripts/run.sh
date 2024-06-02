@@ -1,15 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
 # Run the application
 # Shell will fail if executation fails
 
-set -e
-
-echo "✅ Postgres is available ♫♪ - Starting the Application ⏩"
-
-sleep 5
-
-python manage.py collectstatic --noinput
-python manage.py runserver 0.0.0.0:8000
-
-exec $@
+/venv/bin/python3 /gamma_budget/manage.py collectstatic --noinput
+/venv/bin/python3 /gamma_budget/manage.py migrate
+# /venv/bin/python3 /gamma_budget/manage.py createsuperuser --noinput --email ${DJANGO_SUPERUSER_EMAIL}
+/venv/bin/python3 /gamma_budget/manage.py runserver 0.0.0.0:8000

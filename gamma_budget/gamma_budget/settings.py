@@ -58,7 +58,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "projekt.urls"
+ROOT_URLCONF = "gamma_budget.urls"
 
 TEMPLATES = [
     {
@@ -76,7 +76,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "projekt.wsgi.application"
+WSGI_APPLICATION = "gamma_budget.wsgi.application"
 
 
 # Database
@@ -88,7 +88,7 @@ DATABASES = {
         "NAME": "postgres",
         "USER": "postgres",
         "PASSWORD": "postgres",
-        "HOST": "projekt_db",
+        "HOST": "gamma_budget_db",
         "PORT": 5432,  # default PostgreSQL port
     },
     "test": {
