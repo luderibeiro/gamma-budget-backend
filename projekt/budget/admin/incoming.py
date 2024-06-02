@@ -38,11 +38,11 @@ class IncomingAdmin(admin.ModelAdmin):
         "user_id",
         "launch_date",
     ]
-    readonly_fields = [
+    readonly_fields: ClassVar[list[str]] = [
         "id",
         "launch_date",
     ]
-    fields = [
+    fields: ClassVar[list[str]] = [
         "id",
         "user_id",
         "name",

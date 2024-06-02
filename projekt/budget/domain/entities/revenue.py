@@ -1,4 +1,5 @@
 import datetime
+from typing import Any
 
 
 class Revenue:
@@ -26,7 +27,7 @@ class Revenue:
         expiration_date: datetime.datetime,
         paid: bool,
         payment_date: datetime.datetime,
-        category: int,
+        category: dict[str, Any],
     ) -> None:
         """
         Initialize the revenue record.

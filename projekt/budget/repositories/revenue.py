@@ -145,9 +145,7 @@ class RevenueUpdateRepository(AbstractBaseRevenueUpdateDataAccess):
         revenue.name = data.get("name") if data.get("name") else revenue.name
         revenue.description = data.get("description") if data.get("description") else revenue.description
         revenue.amount = data.get("amount") if data.get("amount") else revenue.amount
-        revenue.expiration_date = (
-            data.get("expiration_date") if data.get("expiration_date") else revenue.expiration_date
-        )
+        revenue.expiration_date = data.get("expiration_date") if data.get("expiration_date") else revenue.expiration_date
         revenue.paid = data.get("paid")
         revenue.payment_date = data.get("payment_date") if data.get("payment_date") else revenue.payment_date
         revenue.category = category if category else revenue.category

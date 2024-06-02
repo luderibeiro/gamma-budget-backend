@@ -1,5 +1,3 @@
-from datetime import date
-
 from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView
 
@@ -161,7 +159,7 @@ class RevenueUpdateAPIView(APIView, ExecuteUseCaseOnPutMixin):
             dict: Keyword arguments.
         """
         data = {}
-        paid = True if request.data.get("paid") == "true" else False
+        paid = request.data.get("paid") == "true"
         print("paid: ", paid)
         data = {
             "name": request.data.get("name"),
