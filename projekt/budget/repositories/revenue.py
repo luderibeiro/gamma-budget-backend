@@ -16,6 +16,7 @@ from budget.repositories.parsers.revenue import parse_revenue_model_to_entity
 class RevenueCreateRepository(AbstractBaseRevenueCreateDataAccess):
     def create_revenue(self, data: dict, user_id: int) -> Revenue:
         category = RevenueCategory.objects.get(id=data["category"])
+        print("expiration_date", data.get("expiration_date"))
         if not category:
             return None
         revenue = RevenueModel.objects.create(

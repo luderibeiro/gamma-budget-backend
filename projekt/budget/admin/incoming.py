@@ -25,6 +25,19 @@ class IncomingAdmin(admin.ModelAdmin):
         "user_id",
         "launch_date",
     ]
+    readonly_fields = [
+        "id",
+        "launch_date",
+    ]
+    fields = [
+        "id",
+        "user_id",
+        "name",
+        "description",
+        "amount",
+        "launch_date",
+        "category",
+    ]
 
 
 admin.site.register(Incoming, IncomingAdmin)

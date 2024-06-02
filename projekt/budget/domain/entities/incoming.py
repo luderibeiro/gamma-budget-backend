@@ -1,7 +1,5 @@
 import datetime
 
-from budget.domain.entities.category import Category
-
 
 class Incoming:
     def __init__(
@@ -12,7 +10,7 @@ class Incoming:
         description: str,
         amount: float,
         launch_date: datetime.datetime,
-        category: Category,
+        category: int,
     ) -> None:
         self.id = id
         self.user_id = user_id
@@ -30,5 +28,5 @@ class Incoming:
             "description": self.description,
             "amount": self.amount,
             "launch_date": self.launch_date,
-            "category": self.category.to_dict(),
+            "category": self.category,
         }

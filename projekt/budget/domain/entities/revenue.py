@@ -1,7 +1,5 @@
 import datetime
 
-from budget.domain.entities.category import Category
-
 
 class Revenue:
     def __init__(
