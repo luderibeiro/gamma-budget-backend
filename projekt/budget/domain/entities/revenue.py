@@ -1,9 +1,13 @@
 import datetime
 
+from budget.domain.entities.category import Category
+
 
 class Revenue:
     def __init__(
         self,
+        id: str,
+        user_id: int,
         name: str,
         description: str,
         amount: float,
@@ -12,6 +16,8 @@ class Revenue:
         payment_date: datetime.datetime,
         category: int,
     ) -> None:
+        self.id = id
+        self.user_id = user_id
         self.name = name
         self.description = description
         self.amount = amount
@@ -22,6 +28,8 @@ class Revenue:
 
     def to_dict(self) -> dict:
         return {
+            "id": self.id,
+            "user_id": self.user_id,
             "name": self.name,
             "description": self.description,
             "amount": self.amount,

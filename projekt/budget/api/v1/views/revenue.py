@@ -38,14 +38,15 @@ class RevenueCreateAPIView(APIView, ExecuteUseCaseOnCreateMixin):
 
     def get_use_case_kwargs(self, request, user_id, *args, **kwargs):
         data = {}
+        paid = True if request.data.get("paid") == "true" else False
         data = {
             "user_id": user_id,
             "name": request.data.get("name"),
             "description": request.data.get("description"),
             "amount": request.data.get("amount"),
             "expiration_date": request.data.get("expiration_date"),
-            "paid": True if request.data.get("paid") == "true" else False,
-            "payment_date": request.data.get("payment_date") if request.data.get("paid") == "true" else None,
+            "paid": paid,
+            "payment_date": request.data.get("payment_date") if paid else None,
             "category": request.data.get("category"),
         }
         return data
@@ -81,18 +82,15 @@ class RevenueUpdateAPIView(APIView, ExecuteUseCaseOnPutMixin):
 
     def get_use_case_kwargs(self, request, user_id, id, *args, **kwargs):
         data = {}
-        paid = True if request.data.get("paid") == "true" else None
-        if paid:
-            payment_date = request.data.get("payment_date")
-            if not payment_date:
-                payment_date = date.today()
+        paid = True if request.data.get("paid") == "true" else False
+        print("paid: ", paid)
         data = {
             "name": request.data.get("name"),
             "description": request.data.get("description"),
             "amount": request.data.get("amount"),
             "expiration_date": request.data.get("expiration_date"),
             "paid": paid,
-            "payment_date": payment_date if paid else None,
+            "payment_date": request.data.get("payment_date") if paid else None,
             "category": request.data.get("category"),
         }
         return {"user_id": user_id, "revenue_id": id, "data": data}
