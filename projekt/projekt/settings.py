@@ -44,11 +44,13 @@ INSTALLED_APPS = [
     "rest_framework",
     "core",
     "budget",
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -190,6 +192,8 @@ OAUTH2_PROVIDER = {
     "OAUTH2_VALIDATOR_CLASS": "core.validators.GammaBudgetOAuth2Validator",
     "OAUTH2_BACKEND_CLASS": "oauth2_provider.oauth2_backends.JSONOAuthLibCore",
 }
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 JAZZMIN_SETTINGS = {
     # title of the window
