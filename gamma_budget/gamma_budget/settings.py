@@ -88,7 +88,7 @@ WSGI_APPLICATION = "gamma_budget.wsgi.application"
 
 DATABASES = {
     "default": (
-        dj_database_url.parse(os.environ.get("DATABASE_URL"))
+        dj_database_url.parse(os.environ.get("DATABASE_URL", ""))
         if "DATABASE_URL" in os.environ
         else {
             "ENGINE": "django.db.backends.postgresql",

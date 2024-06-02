@@ -4,6 +4,7 @@ LABEL mantainer="@luderibeiro & @paulogoncalveslima"
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 ENV PATH "/scripts:/venv/bin:$PATH"
+ENV PYTHONPATH "${PYTHONPATH}:/gamma_budget/"
 EXPOSE 8000
 
 RUN apt update -y \
@@ -35,7 +36,7 @@ RUN wget ftp://ftp.freetds.org/pub/freetds/stable/freetds-1.1.20.tar.gz -T 360 &
     CPReuse= \n\
     UsageCount=1 \n\
     " >> /etc/odbcinst.ini
-    
+
 WORKDIR /gamma_budget
 
 COPY /gamma_budget/requirements.txt .
@@ -54,7 +55,7 @@ RUN useradd -ms /bin/bash  appuser \
     && chown -R appuser:appuser /data/ \
     && chmod -R 755 /data/web/static \
     && chmod -R 755 /data/web/media 
-    
+
 WORKDIR /scripts
 
 COPY scripts/* .
@@ -62,6 +63,5 @@ COPY scripts/* .
 RUN chmod -R +x /scripts
 
 USER appuser
-
 
 ENTRYPOINT ["/bin/bash", "run.sh" ]
