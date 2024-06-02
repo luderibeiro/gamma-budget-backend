@@ -10,10 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
-from pathlib import Path
-import dj_database_url
-from typing import Any
 import os
+from pathlib import Path
+from typing import Any
+
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -86,16 +87,18 @@ WSGI_APPLICATION = "gamma_budget.wsgi.application"
 
 
 DATABASES = {
-    "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
-    if "DATABASE_URL" in os.environ
-    else {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "postgres",
-        "USER": "postgres",
-        "PASSWORD": "postgres",
-        "HOST": "gamma_budget_db",
-        "PORT": 5432,  # default PostgreSQL port
-    },
+    "default": (
+        dj_database_url.parse(os.environ.get("DATABASE_URL"))
+        if "DATABASE_URL" in os.environ
+        else {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": "postgres",
+            "USER": "postgres",
+            "PASSWORD": "postgres",
+            "HOST": "gamma_budget_db",
+            "PORT": 5432,  # default PostgreSQL port
+        }
+    ),
     "test": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": ":memory:",  # Use an in-memory SQLite database
