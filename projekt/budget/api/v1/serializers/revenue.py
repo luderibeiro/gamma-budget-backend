@@ -8,7 +8,7 @@ class RevenueCreateSerializer(serializers.ModelSerializer):
     amount = serializers.DecimalField(max_digits=15, decimal_places=2)
     expiration_date = serializers.DateField()
     paid = serializers.BooleanField()
-    payment_date = serializers.DateField()
+    payment_date = serializers.DateField(allow_null=True)
     category = serializers.UUIDField()
 
     class Meta:
@@ -30,7 +30,7 @@ class RevenueListSerializer(serializers.ModelSerializer):
     amount = serializers.DecimalField(max_digits=15, decimal_places=2)
     expiration_date = serializers.DateField()
     paid = serializers.BooleanField()
-    payment_date = serializers.DateField()
+    payment_date = serializers.DateField(allow_null=True)
     category = serializers.UUIDField()
 
     class Meta:
@@ -50,7 +50,7 @@ class RevenueUpdateSerializer(serializers.ModelSerializer):
     amount = serializers.DecimalField(max_digits=15, decimal_places=2)
     expiration_date = serializers.DateField()
     paid = serializers.BooleanField()
-    payment_date = serializers.DateField()
+    payment_date = serializers.DateField(allow_null=True)
     category = serializers.UUIDField()
 
     class Meta:
