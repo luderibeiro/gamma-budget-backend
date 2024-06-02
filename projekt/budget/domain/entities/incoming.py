@@ -1,4 +1,5 @@
 import datetime
+from typing import Any
 
 
 class Incoming:
@@ -22,7 +23,7 @@ class Incoming:
         description: str,
         amount: float,
         launch_date: datetime.datetime,
-        category: int,
+        category: dict[str, Any],
     ) -> None:
         """
         Initialize the incoming record.

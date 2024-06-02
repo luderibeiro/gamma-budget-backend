@@ -2,7 +2,7 @@ from typing import ClassVar
 
 from django.contrib import admin
 
-from budget.models import Installment, Recurring, Revenue
+from budget.models import Revenue
 
 
 class RevenueAdmin(admin.ModelAdmin):
@@ -44,7 +44,7 @@ class RevenueAdmin(admin.ModelAdmin):
         "category",
         "name",
     ]
-    fields = [
+    fields: ClassVar[list[str]] = [
         "id",
         "user_id",
         "name",
