@@ -8,6 +8,7 @@ from budget.api.v1.views.incoming import (
     IncomingListAPIView,
     IncomingUpdateAPIView,
 )
+from django.urls import path
 
 urlpatterns: list[str] = [
     path(

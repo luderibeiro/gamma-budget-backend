@@ -1,7 +1,5 @@
 from typing import ClassVar
 
-from django.contrib import admin
-
 from budget.models import Revenue
 from django.contrib import admin
 

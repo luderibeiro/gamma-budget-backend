@@ -1,6 +1,5 @@
-from django.db import migrations
-
 from budget.models import IncomingCategory, RevenueCategory
+from django.db import migrations
 
 
 def create_categories(apps, schema_editor):

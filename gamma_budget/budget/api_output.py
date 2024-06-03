@@ -1,7 +1,6 @@
+from budget.domain.use_cases.base.base import AbstractBaseOutput
 from rest_framework import status
 from rest_framework.response import Response
-
-from budget.domain.use_cases.base.base import AbstractBaseOutput
 
 
 class DjangoApiOutput(AbstractBaseOutput):

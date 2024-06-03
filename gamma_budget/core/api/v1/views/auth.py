@@ -1,10 +1,9 @@
+from core.api.v1.serializers.auth import AuthSerializer
+from core.api.v1.serializers.user import UserSerializer
 from django.contrib.auth import authenticate, get_user_model
 from rest_framework import generics, status
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-
-from core.api.v1.serializers.auth import AuthSerializer
-from core.api.v1.serializers.user import UserSerializer
 
 User = get_user_model()
 

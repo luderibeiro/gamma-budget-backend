@@ -9,6 +9,7 @@ from budget.api.v1.views.revenue import (
     RevenueUpdateAPIView,
 )
 from budget.api.v1.views.revenue import RevenueCreateAPIView, RevenueDeleteAPIView, RevenueDetailAPIView, RevenueListAPIView, RevenueUpdateAPIView
+from django.urls import path
 
 urlpatterns: list[str] = [
     path(

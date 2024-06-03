@@ -1,6 +1,5 @@
-from rest_framework import serializers
-
 from budget.models import Revenue
+from rest_framework import serializers
 
 
 class RevenueCreateSerializer(serializers.ModelSerializer):

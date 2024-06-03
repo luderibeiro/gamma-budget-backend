@@ -1,8 +1,7 @@
 from typing import ClassVar
 
-from django.contrib import admin
-
 from budget.models import Incoming
+from django.contrib import admin
 
 
 class IncomingAdmin(admin.ModelAdmin):
