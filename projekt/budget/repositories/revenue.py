@@ -16,6 +16,7 @@ from budget.repositories.parsers.revenue import parse_revenue_model_to_entity
 class RevenueCreateRepository(AbstractBaseRevenueCreateDataAccess):
     def create_revenue(self, data: dict, user_id: int) -> Revenue:
         category = RevenueCategory.objects.get(id=data["category"])
+        print("expiration_date", data.get("expiration_date"))
         if not category:
             return None
         revenue = RevenueModel.objects.create(
@@ -66,7 +67,7 @@ class RevenueUpdateRepository(AbstractBaseRevenueUpdateDataAccess):
         revenue.expiration_date = (
             data.get("expiration_date") if data.get("expiration_date") else revenue.expiration_date
         )
-        revenue.paid = data.get("paid") if data.get("paid") else revenue.paid
+        revenue.paid = data.get("paid")
         revenue.payment_date = data.get("payment_date") if data.get("payment_date") else revenue.payment_date
         revenue.category = category if category else revenue.category
         revenue.save()
