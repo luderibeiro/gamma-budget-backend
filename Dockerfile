@@ -41,26 +41,25 @@ WORKDIR /gamma_budget
 
 COPY /gamma_budget/requirements.txt .
 
-RUN python -m venv /venv \
-    && /venv/bin/pip install --upgrade pip \
-    && /venv/bin/pip install -r /gamma_budget/requirements.txt
-
+RUN pip3 install --upgrade pip \
+    && pip3 install -r /gamma_budget/requirements.txt
 
 COPY /gamma_budget/* .
 
 RUN useradd -ms /bin/bash  appuser \
     && mkdir -p /data/web/static \
     && mkdir -p /data/web/media \
-    && chown -R appuser:appuser /venv \
     && chown -R appuser:appuser /data/ \
     && chmod -R 755 /data/web/static \
     && chmod -R 755 /data/web/media 
 
 WORKDIR /scripts
 
-COPY scripts/* .
+COPY /scripts/ /scripts/
 
 RUN chmod -R +x /scripts
+
+WORKDIR /gamma_budget
 
 USER appuser
 
