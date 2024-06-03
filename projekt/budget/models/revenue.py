@@ -28,7 +28,9 @@ class Revenue(models.Model):
     expiration_date = models.DateField(blank=False, null=False)
     paid = models.BooleanField(default=False)
     payment_date = models.DateField(blank=True, null=True)
-    category = models.ForeignKey("RevenueCategory", on_delete=models.CASCADE, related_name="revenue")
+    category = models.ForeignKey(
+        "RevenueCategory", on_delete=models.CASCADE, related_name="revenue"
+    )
 
     def __str__(self):
         """

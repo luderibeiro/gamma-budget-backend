@@ -35,7 +35,9 @@ class AbstractBaseRevenueUpdateDataAccess(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def update_revenue(self, user_id: int, revenue_id: str, data: dict) -> Revenue | None:
+    def update_revenue(
+        self, user_id: int, revenue_id: str, data: dict
+    ) -> Revenue | None:
         pass
 
 
