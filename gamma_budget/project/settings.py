@@ -25,7 +25,7 @@ DATA_DIR = BASE_DIR.parent / "data" / "web"
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-_0-@$ac9i831u6!iee0y*%=(2yy5l^!sm#5n@l!4s31^*=ccdc"
+SECRET_KEY = os.environ.get("SECRET_KEY", "django-insecure-_0-@$ac9i831u6!iee0y*%=(2yy5l^!sm#5n@l!4s31^*=ccdc")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("ENVIROMENT") != "PROD"
