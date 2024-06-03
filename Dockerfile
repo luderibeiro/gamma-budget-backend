@@ -3,9 +3,9 @@ LABEL mantainer="@luderibeiro & @paulogoncalveslima"
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
-ENV PATH "/scripts:$PATH:/gamma_budget/gamma_budget"
-ENV PYTHONPATH "${PYTHONPATH}:/gamma_budget/gamma_budget"
-ENV DJANGO_SETTINGS_MODULE=gamma_budget.settings
+ENV PATH "/scripts:$PATH"
+ENV PYTHONPATH "${PYTHONPATH}:${PWD}"
+
 EXPOSE 8000
 
 RUN apt update -y \

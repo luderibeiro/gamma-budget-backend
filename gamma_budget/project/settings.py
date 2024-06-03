@@ -61,7 +61,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "gamma_budget.urls"
+ROOT_URLCONF = "project.urls"
 
 TEMPLATES = [
     {
@@ -79,7 +79,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "gamma_budget.wsgi.application"
+WSGI_APPLICATION = "project.wsgi.application"
 
 
 # Database
