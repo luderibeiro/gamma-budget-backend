@@ -20,9 +20,7 @@ class Recurring(models.Model):
     """
 
     id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4)
-    revenue = models.ForeignKey(
-        "Revenue", on_delete=models.CASCADE, related_name="recurring"
-    )
+    revenue = models.ForeignKey("Revenue", on_delete=models.CASCADE, related_name="recurring")
     amount = models.DecimalField(max_digits=15, decimal_places=2)
     payment_method = models.CharField(max_length=100, blank=True, null=True)
     payment_date = models.DateField(blank=True, null=True)

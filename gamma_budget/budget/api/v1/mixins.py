@@ -33,9 +33,7 @@ class ExecuteUseCaseOnGetMixin:
             uc = self.execute_use_case_retrieve(request, *args, **kwargs)
             response = uc.get_response() if hasattr(uc, "get_response") else Response(uc.data, status=status.HTTP_200_OK)
             if self.image_fields:
-                response = self.apply_domain_host_in_image_fields(
-                    request, response, *args, **kwargs
-                )
+                response = self.apply_domain_host_in_image_fields(request, response, *args, **kwargs)
             if response.data is None:
                 return Response(
                     {"detail": "object not found"},
@@ -71,9 +69,7 @@ class ExecuteUseCaseOnGetMixin:
         output_response = self.get_use_case_output_retrieve()
         if output_response:
             use_case_class.output_response = output_response
-        uc = use_case_class(
-            **self.get_use_case_kwargs_retrieve(request, *args, **kwargs)
-        )
+        uc = use_case_class(**self.get_use_case_kwargs_retrieve(request, *args, **kwargs))
         return uc.execute()
 
     def get_use_case_retrieve(self):
@@ -132,11 +128,7 @@ class ExecuteUseCaseOnGetMixin:
         -------
             Saída do caso de uso.
         """
-        return (
-            self.use_case_output_retrieve
-            if self.use_case_output_retrieve
-            else self.use_case_output
-        )
+        return self.use_case_output_retrieve if self.use_case_output_retrieve else self.use_case_output
 
     def apply_domain_host_in_image_fields(self, request, response, *args, **kwargs):
         """
@@ -160,11 +152,7 @@ class ExecuteUseCaseOnGetMixin:
                     if isinstance(value, dict | list):
                         nested_update(value)
                     elif key in self.image_fields:
-                        output_response[key] = (
-                            f"{request.scheme}://{request.get_host()}{value}"
-                            if value
-                            else None
-                        )
+                        output_response[key] = f"{request.scheme}://{request.get_host()}{value}" if value else None
             elif isinstance(output_response, list):
                 for item in output_response:
                     nested_update(item)
@@ -228,9 +216,7 @@ class ExecuteUseCaseOnDestroyMixin:
         """
         use_case_class = self.get_use_case_destroy()
         use_case_class.output_response = self.get_use_case_output_destroy()
-        uc = use_case_class(
-            **self.get_use_case_kwargs_destroy(request, *args, **kwargs)
-        )
+        uc = use_case_class(**self.get_use_case_kwargs_destroy(request, *args, **kwargs))
         return uc.execute()
 
     def get_use_case_destroy(self):
@@ -267,11 +253,7 @@ class ExecuteUseCaseOnDestroyMixin:
 
     def get_use_case_output_destroy(self):
         """Obtém a saída do caso de uso do método destroy."""
-        return (
-            self.use_case_output_destroy
-            if self.use_case_output_destroy
-            else self.use_case_output
-        )
+        return self.use_case_output_destroy if self.use_case_output_destroy else self.use_case_output
 
     class Http400Error(Exception):
         """Exceção para erros de solicitação HTTP 400."""
@@ -328,14 +310,10 @@ class ExecuteUseCaseOnUpdateMixin:
         """
         try:
             if serializer.is_valid():
-                uc = self.execute_use_case_update(
-                    request, serializer.validated_data, *args, **kwargs
-                )
+                uc = self.execute_use_case_update(request, serializer.validated_data, *args, **kwargs)
                 response = uc.get_response()
                 if self.image_fields:
-                    response = self.apply_domain_host_in_image_fields(
-                        request, response, *args, **kwargs
-                    )
+                    response = self.apply_domain_host_in_image_fields(request, response, *args, **kwargs)
                 if response.data is None:
                     return Response(
                         {"detail": "object not found"},
@@ -385,9 +363,7 @@ class ExecuteUseCaseOnUpdateMixin:
         """
         use_case_class = self.get_use_case_update()
         use_case_class.output_response = self.get_use_case_output_update()
-        uc = use_case_class(
-            **self.get_use_case_kwargs_update(request, data, *args, **kwargs)
-        )
+        uc = use_case_class(**self.get_use_case_kwargs_update(request, data, *args, **kwargs))
         return uc.execute()
 
     def get_use_case_update(self):
@@ -404,11 +380,7 @@ class ExecuteUseCaseOnUpdateMixin:
 
     def get_use_case_output_update(self):
         """Obtém a saída do caso de uso do método update."""
-        return (
-            self.use_case_output_update
-            if self.use_case_output_update
-            else self.use_case_output
-        )
+        return self.use_case_output_update if self.use_case_output_update else self.use_case_output
 
     def apply_domain_host_in_image_fields(self, request, response, *args, **kwargs):
         """
@@ -429,11 +401,7 @@ class ExecuteUseCaseOnUpdateMixin:
                     if isinstance(value, dict | list):
                         nested_update(value)
                     elif key in self.image_fields:
-                        output_response[key] = (
-                            f"{request.scheme}://{request.get_host()}{value}"
-                            if value
-                            else None
-                        )
+                        output_response[key] = f"{request.scheme}://{request.get_host()}{value}" if value else None
             elif isinstance(output_response, list):
                 for item in output_response:
                     nested_update(item)
@@ -522,14 +490,8 @@ class ExecuteUseCaseOnCreateMixin:
         self.serializer_instance = self.get_serializer_create()(data=request.data, context={"request": request})
         if self.serializer_instance.is_valid():
             try:
-                uc = self.execute_use_case_create(
-                    request, *args, data=self.serializer_instance.data, **kwargs
-                )
-                response = (
-                    uc.get_response()
-                    if hasattr(uc, "get_response")
-                    else Response(uc.data, status=status.HTTP_200_OK)
-                )
+                uc = self.execute_use_case_create(request, *args, data=self.serializer_instance.data, **kwargs)
+                response = uc.get_response() if hasattr(uc, "get_response") else Response(uc.data, status=status.HTTP_200_OK)
                 if response.data is None:
                     return Response(
                         {"detail": "object not found"},
@@ -546,9 +508,7 @@ class ExecuteUseCaseOnCreateMixin:
                     return response
                 raise
 
-        return Response(
-            self.serializer_instance.errors, status=status.HTTP_400_BAD_REQUEST
-        )
+        return Response(self.serializer_instance.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def execute_use_case_create(self, request, data, *args, **kwargs):
         """
@@ -563,9 +523,7 @@ class ExecuteUseCaseOnCreateMixin:
         """
         use_case_class = self.get_use_case_create()
         use_case_class.output_response = self.get_use_case_output_create()
-        uc = use_case_class(
-            data=data, **self.get_use_case_kwargs_create(request, *args, **kwargs)
-        )
+        uc = use_case_class(data=data, **self.get_use_case_kwargs_create(request, *args, **kwargs))
         return uc.execute()
 
     def get_use_case_create(self):
@@ -598,11 +556,7 @@ class ExecuteUseCaseOnCreateMixin:
 
     def get_use_case_output_create(self):
         """Obtém a saída do caso de uso do método create."""
-        return (
-            self.use_case_output_create
-            if self.use_case_output_create
-            else self.use_case_output
-        )
+        return self.use_case_output_create if self.use_case_output_create else self.use_case_output
 
     def get_serializer_create(self):
         """Obtém a serializer de criação."""

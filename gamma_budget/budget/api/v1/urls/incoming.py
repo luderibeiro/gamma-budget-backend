@@ -1,5 +1,3 @@
-from django.urls import path
-
 from budget.api.v1.views.categories import IncomingCategoryListAPIView
 from budget.api.v1.views.incoming import (
     IncomingCreateAPIView,

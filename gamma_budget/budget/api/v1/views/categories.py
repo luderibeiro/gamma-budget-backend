@@ -1,6 +1,3 @@
-from rest_framework.permissions import AllowAny
-from rest_framework.views import APIView
-
 from budget.api.v1.mixins import ExecuteUseCaseOnGetMixin
 from budget.api.v1.serializers.categories import (
     IncomingCategoryListSerializer,
@@ -11,6 +8,8 @@ from budget.domain.use_cases.categories import (
     IncomingCategoryListUseCase,
     RevenueCategoryListUseCase,
 )
+from rest_framework.permissions import AllowAny
+from rest_framework.views import APIView
 
 
 class IncomingCategoryListAPIView(APIView, ExecuteUseCaseOnGetMixin):

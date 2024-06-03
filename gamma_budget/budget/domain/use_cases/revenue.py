@@ -90,9 +90,7 @@ class RevenueCreateUseCase(
             AbstractBaseOutput: The output response.
         """
         try:
-            revenue = self.data_access().create_revenue(
-                data=self.data, user_id=self.user_id
-            )
+            revenue = self.data_access().create_revenue(data=self.data, user_id=self.user_id)
         except Exception as e:
             return self._build_output(revenue={"message": str(e)})
         parsed_revenue = revenue.to_dict()
@@ -191,9 +189,7 @@ class RevenueRetrieveUseCase(
             AbstractBaseOutput: The output response.
         """
         try:
-            revenue = self.data_access().get_revenue(
-                revenue_id=self.revenue_id, user_id=self.user_id
-            )
+            revenue = self.data_access().get_revenue(revenue_id=self.revenue_id, user_id=self.user_id)
         except Exception as e:
             return self._build_output(revenue={"message": str(e)})
         return self._build_output(revenue=revenue.to_dict())
@@ -264,9 +260,7 @@ class RevenueUpdateUseCase(
         -------
             AbstractBaseOutput: The output response.
         """
-        updated_revenue = self.data_access().update_revenue(
-            user_id=self.user_id, revenue_id=self.revenue_id, data=self.data
-        )
+        updated_revenue = self.data_access().update_revenue(user_id=self.user_id, revenue_id=self.revenue_id, data=self.data)
         if not updated_revenue:
             return self._build_output(revenue={"message": "Revenue not found."})
         revenue = updated_revenue.to_dict()

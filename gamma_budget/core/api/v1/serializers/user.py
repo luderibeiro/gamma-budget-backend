@@ -87,12 +87,8 @@ class UserAlterPasswordSerializer(serializers.ModelSerializer):
         new_password (CharField): Field for new user password.
     """
 
-    password = serializers.CharField(
-        write_only=True, required=True, min_length=6, allow_blank=False
-    )
-    new_password = serializers.CharField(
-        write_only=True, required=True, min_length=6, allow_blank=False
-    )
+    password = serializers.CharField(write_only=True, required=True, min_length=6, allow_blank=False)
+    new_password = serializers.CharField(write_only=True, required=True, min_length=6, allow_blank=False)
 
     class Meta:
         """Meta class for the `UserAlterPasswordSerializer`.

@@ -32,10 +32,7 @@ class AuthSerializer(serializers.Serializer):
         ------
             serializers.ValidationError: If email and password are not provided.
         """
-        if (
-            data.get("email", None) is not None
-            and data.get("password", None) is not None
-        ):
+        if data.get("email", None) is not None and data.get("password", None) is not None:
             return data
 
         raise serializers.ValidationError("Define email and password.")

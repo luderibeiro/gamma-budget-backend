@@ -1,6 +1,5 @@
-from rest_framework import serializers
-
 from budget.models.categories import IncomingCategory, RevenueCategory
+from rest_framework import serializers
 
 
 class IncomingCategoryListSerializer(serializers.ModelSerializer):

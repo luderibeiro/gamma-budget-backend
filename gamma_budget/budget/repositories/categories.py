@@ -39,10 +39,7 @@ class IncomingCategoryListRepository(AbstractBaseIncomingCategoryListDataAccess)
         incoming_categories_qs = IncomingCategory.objects.all()
         if not incoming_categories_qs.exists():
             return []
-        lista = [
-            parse_incoming_category_model_to_entity(category)
-            for category in incoming_categories_qs.iterator()
-        ]
+        lista = [parse_incoming_category_model_to_entity(category) for category in incoming_categories_qs.iterator()]
         return lista
 
 
@@ -75,8 +72,5 @@ class RevenueCategoryListRepository(AbstractBaseRevenueCategoryListDataAccess):
         revenue_categories_qs = RevenueCategory.objects.all()
         if not revenue_categories_qs.exists():
             return []
-        lista = [
-            parse_revenue_category_model_to_entity(category)
-            for category in revenue_categories_qs.iterator()
-        ]
+        lista = [parse_revenue_category_model_to_entity(category) for category in revenue_categories_qs.iterator()]
         return lista

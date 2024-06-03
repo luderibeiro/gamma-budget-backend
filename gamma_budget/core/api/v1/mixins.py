@@ -23,9 +23,7 @@ class ExecuteUseCaseOnGetMixin:
             uc = self.execute_use_case_retrieve(request, *args, **kwargs)
             response = getattr(uc, "get_response", lambda: Response(uc.data))()
             if self.image_fields:
-                response = self.apply_domain_host_in_image_fields(
-                    request, response, *args, **kwargs
-                )
+                response = self.apply_domain_host_in_image_fields(request, response, *args, **kwargs)
             if not response.data:
                 return Response(
                     {"detail": "object not found"},
@@ -60,9 +58,7 @@ class ExecuteUseCaseOnGetMixin:
         output_response = self.get_use_case_output_retrieve()
         if output_response:
             use_case_class.output_response = output_response
-        uc = use_case_class(
-            **self.get_use_case_kwargs_retrieve(request, *args, **kwargs)
-        )
+        uc = use_case_class(**self.get_use_case_kwargs_retrieve(request, *args, **kwargs))
         return uc.execute()
 
     def get_use_case_retrieve(self):
@@ -144,11 +140,7 @@ class ExecuteUseCaseOnGetMixin:
                     if isinstance(value, dict | list):
                         nested_update(value)
                     elif key in self.image_fields:
-                        output_response[key] = (
-                            f"{request.scheme}://{request.get_host()}{value}"
-                            if value
-                            else None
-                        )
+                        output_response[key] = f"{request.scheme}://{request.get_host()}{value}" if value else None
             elif isinstance(output_response, list):
                 for item in output_response:
                     nested_update(item)

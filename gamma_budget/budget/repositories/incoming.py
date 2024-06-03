@@ -56,10 +56,7 @@ class IncomingListRepository(AbstractBaseIncomingListDataAccess):
         incoming_qs = IncomingModel.objects.all().filter(user_id=user_id)
         if not incoming_qs.exists():
             return None
-        lista = [
-            parse_incoming_model_to_entity(incoming)
-            for incoming in incoming_qs.iterator()
-        ]
+        lista = [parse_incoming_model_to_entity(incoming) for incoming in incoming_qs.iterator()]
         return lista
 
 
@@ -104,9 +101,7 @@ class IncomingUpdateRepository(AbstractBaseIncomingUpdateDataAccess):
             return None
         return parse_incoming_model_to_entity(incoming)
 
-    def update_incoming(
-        self, user_id: int, incoming_id: str, data: dict
-    ) -> Incoming | None:
+    def update_incoming(self, user_id: int, incoming_id: str, data: dict) -> Incoming | None:
         """Update an Incoming instance.
 
         Args:
@@ -120,17 +115,11 @@ class IncomingUpdateRepository(AbstractBaseIncomingUpdateDataAccess):
             Incoming | None: The updated Incoming instance, or None if update failed.
         """
         incoming = IncomingModel.objects.filter(id=incoming_id, user_id=user_id).first()
-        category = (
-            IncomingCategory.objects.get(id=data["category"])
-            if data.get("category")
-            else None
-        )
+        category = IncomingCategory.objects.get(id=data["category"]) if data.get("category") else None
         if not incoming:
             return None
         incoming.name = data.get("name") if data.get("name") else incoming.name
-        incoming.description = (
-            data.get("description") if data.get("description") else incoming.description
-        )
+        incoming.description = data.get("description") if data.get("description") else incoming.description
         incoming.amount = data.get("amount") if data.get("amount") else incoming.amount
         incoming.category = category if category else incoming.category
         incoming.save()

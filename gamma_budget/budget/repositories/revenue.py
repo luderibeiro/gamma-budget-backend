@@ -70,9 +70,7 @@ class RevenueListRepository(AbstractBaseRevenueListDataAccess):
         revenue_qs = RevenueModel.objects.all().filter(user_id=user_id)
         if not revenue_qs.exists():
             return None
-        lista = [
-            parse_revenue_model_to_entity(revenue) for revenue in revenue_qs.iterator()
-        ]
+        lista = [parse_revenue_model_to_entity(revenue) for revenue in revenue_qs.iterator()]
         return lista
 
 
@@ -127,9 +125,7 @@ class RevenueUpdateRepository(AbstractBaseRevenueUpdateDataAccess):
             return None
         return parse_revenue_model_to_entity(revenue)
 
-    def update_revenue(
-        self, user_id: int, revenue_id: str, data: dict
-    ) -> Revenue | None:
+    def update_revenue(self, user_id: int, revenue_id: str, data: dict) -> Revenue | None:
         """Update a revenue instance.
 
         Args:
@@ -143,29 +139,15 @@ class RevenueUpdateRepository(AbstractBaseRevenueUpdateDataAccess):
             Revenue | None: Updated Revenue instance or None if update fails.
         """
         revenue = RevenueModel.objects.filter(id=revenue_id, user_id=user_id).first()
-        category = (
-            RevenueCategory.objects.get(id=data["category"])
-            if data.get("category")
-            else None
-        )
+        category = RevenueCategory.objects.get(id=data["category"]) if data.get("category") else None
         if not revenue:
             return None
         revenue.name = data.get("name") if data.get("name") else revenue.name
-        revenue.description = (
-            data.get("description") if data.get("description") else revenue.description
-        )
+        revenue.description = data.get("description") if data.get("description") else revenue.description
         revenue.amount = data.get("amount") if data.get("amount") else revenue.amount
-        revenue.expiration_date = (
-            data.get("expiration_date")
-            if data.get("expiration_date")
-            else revenue.expiration_date
-        )
+        revenue.expiration_date = data.get("expiration_date") if data.get("expiration_date") else revenue.expiration_date
         revenue.paid = data.get("paid")
-        revenue.payment_date = (
-            data.get("payment_date")
-            if data.get("payment_date")
-            else revenue.payment_date
-        )
+        revenue.payment_date = data.get("payment_date") if data.get("payment_date") else revenue.payment_date
         revenue.category = category if category else revenue.category
         revenue.save()
         return parse_revenue_model_to_entity(revenue)

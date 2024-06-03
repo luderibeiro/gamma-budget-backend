@@ -1,6 +1,8 @@
+from typing import ClassVar
+
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
-from typing import ClassVar
+
 
 class UserManager(BaseUserManager):
     """A model manager for the `User` model with no username field.
