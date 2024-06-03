@@ -1,3 +1,6 @@
+from rest_framework.permissions import AllowAny
+from rest_framework.views import APIView
+
 from budget.api.v1.mixins import ExecuteUseCaseOnGetMixin
 from budget.api.v1.serializers.categories import (
     IncomingCategoryListSerializer,
@@ -8,13 +11,18 @@ from budget.domain.use_cases.categories import (
     IncomingCategoryListUseCase,
     RevenueCategoryListUseCase,
 )
-from rest_framework import exceptions, status
-from rest_framework.permissions import AllowAny
-from rest_framework.response import Response
-from rest_framework.views import APIView
 
 
 class IncomingCategoryListAPIView(APIView, ExecuteUseCaseOnGetMixin):
+    """
+    API view for retrieving a list of IncomingCategory instances.
+
+    This view handles GET requests to retrieve a list of incoming categories. It uses
+    the IncomingCategoryListUseCase to process the data and returns the result through
+    a Django API output.
+
+    """
+
     permission_classes = (AllowAny,)
     serializer_class = IncomingCategoryListSerializer
     use_case_retrieve = IncomingCategoryListUseCase
@@ -22,6 +30,15 @@ class IncomingCategoryListAPIView(APIView, ExecuteUseCaseOnGetMixin):
 
 
 class RevenueCategoryListAPIView(APIView, ExecuteUseCaseOnGetMixin):
+    """
+    API view for retrieving a list of RevenueCategory instances.
+
+    This view handles GET requests to retrieve a list of revenue categories. It uses
+    the RevenueCategoryListUseCase to process the data and returns the result through
+    a Django API output.
+
+    """
+
     permission_classes = (AllowAny,)
     serializer_class = RevenueCategoryListSerializer
     use_case_retrieve = RevenueCategoryListUseCase

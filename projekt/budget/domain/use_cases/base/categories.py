@@ -2,9 +2,7 @@ from abc import ABCMeta, abstractmethod
 
 
 class AbstractIncomingCategoryUseCase(metaclass=ABCMeta):
-    """
-    Base class for use cases incoming category output.
-    """
+    """Base class for use cases incoming category output."""
 
     @property
     @abstractmethod
@@ -13,9 +11,7 @@ class AbstractIncomingCategoryUseCase(metaclass=ABCMeta):
 
 
 class AbstractIncomingCategoryListUseCase(metaclass=ABCMeta):
-    """
-    Base class for use cases list incoming categories output.
-    """
+    """Base class for use cases list incoming categories output."""
 
     @property
     @abstractmethod
@@ -24,9 +20,7 @@ class AbstractIncomingCategoryListUseCase(metaclass=ABCMeta):
 
 
 class AbstractRevenueCategoryUseCase(metaclass=ABCMeta):
-    """
-    Base class for use cases revenue category output.
-    """
+    """Base class for use cases revenue category output."""
 
     @property
     @abstractmethod
@@ -35,9 +29,7 @@ class AbstractRevenueCategoryUseCase(metaclass=ABCMeta):
 
 
 class AbstractRevenueCategoryListUseCase(metaclass=ABCMeta):
-    """
-    Base class for use cases list revenue categories output.
-    """
+    """Base class for use cases list revenue categories output."""
 
     @property
     @abstractmethod

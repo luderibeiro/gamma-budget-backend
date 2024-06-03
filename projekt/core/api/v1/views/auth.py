@@ -49,7 +49,9 @@ class AuthView(generics.CreateAPIView):
                 if email is not None and len(email) > 0:
                     try:
                         user = User.objects.get(email=request.data["email"])
-                        user = authenticate(username=user.email, password=request.data["password"])
+                        user = authenticate(
+                            username=user.email, password=request.data["password"]
+                        )
                     except User.DoesNotExist:
                         pass
 

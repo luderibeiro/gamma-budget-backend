@@ -28,4 +28,7 @@ user_paths: list[str] = [
     ),
 ]
 
-urlpatterns: list[str] = [path("v1/", include("core.api.urls.v1_urls"), name="v1"), *user_paths]
+urlpatterns: list[str] = [
+    path("v1/", include("core.api.urls.v1_urls"), name="v1"),
+    *user_paths,
+]

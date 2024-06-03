@@ -35,7 +35,9 @@ class AbstractBaseIncomingUpdateDataAccess(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def update_incoming(self, user_id: int, incoming_id: str, data: dict) -> Incoming | None:
+    def update_incoming(
+        self, user_id: int, incoming_id: str, data: dict
+    ) -> Incoming | None:
         pass
 
 

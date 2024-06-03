@@ -82,7 +82,9 @@ class IncomingCreateUseCase(
         -------
             AbstractBaseOutput: The output response.
         """
-        incoming = self.data_access().create_incoming(data=self.data, user_id=self.user_id)
+        incoming = self.data_access().create_incoming(
+            data=self.data, user_id=self.user_id
+        )
         if not incoming:
             return self._build_output(incoming={"message": "Category not found."})
         parsed_incoming = incoming.to_dict()
@@ -180,7 +182,9 @@ class IncomingRetrieveUseCase(
         -------
             AbstractBaseOutput: The output response.
         """
-        incoming = self.data_access().get_incoming(incoming_id=self.incoming_id, user_id=self.user_id)
+        incoming = self.data_access().get_incoming(
+            incoming_id=self.incoming_id, user_id=self.user_id
+        )
         if not incoming:
             return self._build_output(incoming={"message": "Incoming not found."})
         return self._build_output(incoming=incoming.to_dict())
@@ -251,7 +255,9 @@ class IncomingUpdateUseCase(
         -------
             AbstractBaseOutput: The output response.
         """
-        updated_incoming = self.data_access().update_incoming(user_id=self.user_id, incoming_id=self.incoming_id, data=self.data)
+        updated_incoming = self.data_access().update_incoming(
+            user_id=self.user_id, incoming_id=self.incoming_id, data=self.data
+        )
         if not updated_incoming:
             return self._build_output(incoming={"message": "Incoming not found."})
         incoming = updated_incoming.to_dict()
