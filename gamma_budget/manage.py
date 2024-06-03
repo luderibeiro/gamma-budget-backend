@@ -2,13 +2,11 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-from pathlib import Path
 
 
 def main():
     """Run administrative tasks."""
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "project.settings")
-    sys.path.insert(0, Path(__file__).parent.joinpath("./budget").absolute().as_posix())
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
