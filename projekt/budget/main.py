@@ -1,9 +1,11 @@
 from budget.domain.use_cases import (
+    IncomingCategoryListUseCase,
     IncomingCreateUseCase,
     IncomingDeleteUseCase,
     IncomingListUseCase,
     IncomingRetrieveUseCase,
     IncomingUpdateUseCase,
+    RevenueCategoryListUseCase,
     RevenueCreateUseCase,
     RevenueDeleteUseCase,
     RevenueListUseCase,
@@ -11,11 +13,13 @@ from budget.domain.use_cases import (
     RevenueUpdateUseCase,
 )
 from budget.repositories import (
+    IncomingCategoryListRepository,
     IncomingCreateRepository,
     IncomingDeleteRepository,
     IncomingListRepository,
     IncomingRetrieveRepository,
     IncomingUpdateRepository,
+    RevenueCategoryListRepository,
     RevenueCreateRepository,
     RevenueDeleteRepository,
     RevenueListRepository,
@@ -36,3 +40,6 @@ def configure():
     RevenueRetrieveUseCase.data_access = RevenueRetrieveRepository
     RevenueUpdateUseCase.data_access = RevenueUpdateRepository
     RevenueDeleteUseCase.data_access = RevenueDeleteRepository
+
+    IncomingCategoryListUseCase.data_access = IncomingCategoryListRepository
+    RevenueCategoryListUseCase.data_access = RevenueCategoryListRepository
