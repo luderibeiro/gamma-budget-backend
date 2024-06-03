@@ -40,10 +40,11 @@ RUN wget ftp://ftp.freetds.org/pub/freetds/stable/freetds-1.1.20.tar.gz -T 360 &
 
 WORKDIR /gamma_budget
 
-COPY /gamma_budget/requirements.txt .
+COPY /gamma_budget/* ./
 
 RUN pip3 install --upgrade pip \
-    && pip3 install -r /gamma_budget/requirements.txt
+    && pip3 install -r requirements.txt \
+    && pip3 install -e .
 
 COPY /gamma_budget/* .
 
