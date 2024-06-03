@@ -30,8 +30,8 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "django-insecure-_0-@$ac9i831u6!iee0y*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("ENVIROMENT") != "PROD"
 
-ALLOWED_HOSTS: list[Any] = ["back-end-d5im.onrender.com"]
-
+ALLOWED_HOSTS: list[Any] = ["back-end-d5im.onrender.com", "localhost"]
+CSRF_TRUSTED_ORIGINS = ["https://back-end-d5im.onrender.com"]
 
 # Application definition
 
@@ -155,6 +155,13 @@ STORAGES = {
         "class": "whitenoise.storage.CompressedManifestStaticFilesStorage",  # Specify your storage class
         "kwargs": {
             "location": "static",
+        },
+    },
+    "mediafiles": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+        "class": "django.core.files.storage.FileSystemStorage",
+        "kwargs": {
+            "location": "media",
         },
     },
 }
