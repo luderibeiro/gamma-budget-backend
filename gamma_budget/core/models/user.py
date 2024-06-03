@@ -121,5 +121,4 @@ class User(AbstractUser):
         return self.is_superuser
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS: ClassVar[list[str]] = ["username", "email"]
-
+    REQUIRED_FIELDS: ClassVar[list[str]] = ["username"]
