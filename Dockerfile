@@ -3,8 +3,8 @@ LABEL mantainer="@luderibeiro & @paulogoncalveslima"
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
-ENV PATH "/scripts:/venv/bin:$PATH:/gamma_budget/"
-ENV PYTHONPATH "${PYTHONPATH}:/gamma_budget/"
+ENV PATH "/scripts:$PATH:/gamma_budget/gamma_budget"
+ENV PYTHONPATH "${PYTHONPATH}:/gamma_budget/gamma_budget"
 ENV DJANGO_SETTINGS_MODULE=gamma_budget.settings
 EXPOSE 8000
 
