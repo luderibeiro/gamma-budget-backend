@@ -1,6 +1,6 @@
 services:
-    projekt:
-        container_name: projekt
+    gamma_budget:
+        container_name: gamma_budget
         build:
             context: .
         deploy:
@@ -11,16 +11,16 @@ services:
         ports:
             - "8000:8000"
         volumes:
-            - ./projekt:/projekt
+            - ./gamma_budget:/gamma_budget
             - ./data/web/static:/data/web/static
             - ./data/web/media:/data/web/media
         env_file:
             - ./dotenv_files/.env
         depends_on:
-            - projekt_db
+            - gamma_budget_db
 
-    projekt_db:
-        container_name: projekt_db
+    gamma_budget_db:
+        container_name: gamma_budget_db
         user: "postgres"
         environment:
             POSTGRES_USER: postgres
@@ -33,7 +33,7 @@ services:
                     cpus: "1"
                     memory: 1024M
         volumes:
-            - projekt_db:/var/lib/postgresql/data
+            - gamma_budget_db:/var/lib/postgresql/data
         ports:
             - "5432:5432"
         env_file:
@@ -45,4 +45,4 @@ services:
             retries: 5
 
 volumes:
-    projekt_db:
+    gamma_budget_db:

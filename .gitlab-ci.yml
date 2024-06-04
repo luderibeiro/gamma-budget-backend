@@ -11,7 +11,7 @@ variables:
 
 image: python:3.12.2-bullseye
 before_script:
-  - pip install -r projekt/requirements.txt
+  - pip install -r gamma_budget/requirements.txt
 
 Linters:
   stage: Lint
