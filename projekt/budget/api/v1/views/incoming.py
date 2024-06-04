@@ -3,7 +3,6 @@ from budget.api.v1.mixins import (
     ExecuteUseCaseOnDestroyMixin,
     ExecuteUseCaseOnGetMixin,
     ExecuteUseCaseOnPutMixin,
-    ExecuteUseCaseOnUpdateMixin,
 )
 from budget.api.v1.serializers.incoming import (
     IncomingCategoryListSerializer,
