@@ -210,11 +210,11 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 JAZZMIN_SETTINGS = {
     # title of the window
-    "site_title": "Django Base Admin",
+    "site_title": "Gamma Budget Admin",
     # Title on the login screen (19 chars max)
-    "site_header": "Django Base",
+    "site_header": "Gamma Budget",
     # Title on the brand (19 chars max)
-    "site_brand": "Django Base",
+    "site_brand": "Gamma Budget",
     # Logo to use for your site, must be present in static files, used for brand on top left
     "site_logo": "img/green-logo-150.png",
     # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
