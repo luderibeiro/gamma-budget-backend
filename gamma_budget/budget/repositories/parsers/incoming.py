@@ -10,6 +10,7 @@ def parse_incoming_model_to_entity(incoming: IncomingModel) -> Incoming:
         description=incoming.description,
         amount=incoming.amount,
         launch_date=incoming.launch_date,
+        incoming_date=incoming.incoming_date,
         category={
             "id": incoming.category.id,
             "name": incoming.category.name,

@@ -15,6 +15,7 @@ class Incoming(models.Model):
         description (models.TextField): The description of the transaction.
         amount (models.DecimalField): The amount of the transaction.
         launch_date (models.DateTimeField): The date and time when the transaction was created.
+        incoming_date (models.DateTimeField): The date and time when the transaction is extimated to come in.
         category (models.ForeignKey): The category of the transaction.
     """
 
@@ -24,6 +25,7 @@ class Incoming(models.Model):
     description = models.TextField(max_length=500, blank=True, null=True)
     amount = models.DecimalField(max_digits=15, decimal_places=2)
     launch_date = models.DateTimeField(auto_now_add=True)
+    incoming_date = models.DateField(default=None, blank=True, null=True)
     category = models.ForeignKey("IncomingCategory", on_delete=models.CASCADE, related_name="incoming")
 
     def __str__(self):
