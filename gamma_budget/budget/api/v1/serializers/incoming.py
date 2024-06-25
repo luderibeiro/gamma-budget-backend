@@ -38,14 +38,16 @@ class IncomingListSerializer(serializers.ModelSerializer):
         name (CharField): The name of the incoming item.
         description (CharField): The description of the incoming item.
         amount (DecimalField): The amount of the incoming item.
-        launch_date (DateTimeField): The launch date of the incoming item.
+        launch_date (DateField): The launch date of the incoming item.
+        incoming_date (DateField): The incoming date of the incoming item.
         category (UUIDField): The category of the incoming item.
     """
 
     name = serializers.CharField(max_length=100)
     description = serializers.CharField(max_length=500, required=False)
     amount = serializers.DecimalField(max_digits=15, decimal_places=2)
-    launch_date = serializers.DateTimeField()
+    launch_date = serializers.DateField()
+    incoming_date = serializers.DateField()
     category = serializers.UUIDField()
 
     class Meta:

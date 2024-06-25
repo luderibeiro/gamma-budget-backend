@@ -21,7 +21,7 @@ class IncomingAdmin(admin.ModelAdmin):
         "name",
         "amount",
         "category",
-        "launch_date",
+        "incoming_date",
     ]
     list_filter: ClassVar[list[str]] = [
         "user_id",
@@ -35,6 +35,7 @@ class IncomingAdmin(admin.ModelAdmin):
     ]
     ordering: ClassVar[list[str]] = [
         "user_id",
+        "incoming_date",
         "launch_date",
     ]
     readonly_fields: ClassVar[list[str]] = [
@@ -48,6 +49,7 @@ class IncomingAdmin(admin.ModelAdmin):
         "description",
         "amount",
         "launch_date",
+        "incoming_date",
         "category",
     ]
 
