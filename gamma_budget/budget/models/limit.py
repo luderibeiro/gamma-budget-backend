@@ -10,7 +10,7 @@ class Limit(models.Model):
     Attributes:
     ----------
         id (models.UUIDField): The UUID field for primary key.
-        user (models.IntegerField): The user associated with the limit.
+        user_id (models.IntegerField): The user associated with the limit.
         limit (models.DecimalField): The limit amount.
         amount (models.DecimalField): The amount of the limit.
         limit_date (models.DateField): The date to associate month and year of limit.
@@ -20,7 +20,7 @@ class Limit(models.Model):
     """
 
     id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4)
-    user = models.IntegerField()
+    user_id = models.IntegerField()
     limit = models.DecimalField(max_digits=15, decimal_places=2)
     amount = models.DecimalField(max_digits=15, decimal_places=2)
     limit_date = models.DateField(null=False, blank=False)

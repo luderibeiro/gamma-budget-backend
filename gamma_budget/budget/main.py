@@ -5,6 +5,10 @@ from budget.domain.use_cases import (
     IncomingListUseCase,
     IncomingRetrieveUseCase,
     IncomingUpdateUseCase,
+    LimitCreateUseCase,
+    LimitDeleteUseCase,
+    LimitListUseCase,
+    LimitUpdateUseCase,
     RevenueCategoryListUseCase,
     RevenueCreateUseCase,
     RevenueDeleteUseCase,
@@ -19,6 +23,10 @@ from budget.repositories import (
     IncomingListRepository,
     IncomingRetrieveRepository,
     IncomingUpdateRepository,
+    LimitCreateRepository,
+    LimitDeleteRepository,
+    LimitListRepository,
+    LimitUpdateRepository,
     RevenueCategoryListRepository,
     RevenueCreateRepository,
     RevenueDeleteRepository,
@@ -43,3 +51,8 @@ def configure():
 
     IncomingCategoryListUseCase.data_access = IncomingCategoryListRepository
     RevenueCategoryListUseCase.data_access = RevenueCategoryListRepository
+
+    LimitListUseCase.data_access = LimitListRepository
+    LimitCreateUseCase.data_access = LimitCreateRepository
+    LimitUpdateUseCase.data_access = LimitUpdateRepository
+    LimitDeleteUseCase.data_access = LimitDeleteRepository
