@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('budget', '0003_alter_revenue_expiration_date'),
+        ("budget", "0003_alter_revenue_expiration_date"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='incoming',
-            name='incoming_date',
+            model_name="incoming",
+            name="incoming_date",
             field=models.DateField(blank=True, default=None, null=True),
         ),
     ]
