@@ -7,6 +7,7 @@ from budget.domain.data_access.alert import (
 from budget.domain.entities import Alert
 from budget.models import Alert as AlertModel
 from budget.models.categories import RevenueCategory
+from budget.models.revenue import Revenue
 from budget.repositories.parsers.alert import parse_alert_model_to_entity
 
 
@@ -88,12 +89,13 @@ class AlertUpdateRepository(AbstractBaseAlertUpdateDataAccess):
         -------
             Alert | None: The updated Alert instance, or None if update failed.
         """
+        revenue = Revenue.objects.get(id=data.get("revenue_id")) if data.get("revenue_id") else None
         alert = AlertModel.objects.filter(id=alert_id, user_id=user_id).first()
         if not alert:
             return None
-        alert.revenue_id = data.get("revenue_id")
-        alert.message = data.get("message")
-        alert.alert_date = data.get("alert_date")
+        alert.revenue = revenue if revenue else alert.revenue
+        alert.message = data.get("message") if data.get("message") else alert.message
+        alert.alert_date = data.get("alert_date") if data.get("alert_date") else alert.alert_date
         alert.save()
         return parse_alert_model_to_entity(alert)
 

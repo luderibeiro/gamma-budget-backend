@@ -11,7 +11,7 @@ class Alert(models.Model):
     ----------
         id (models.AutoField): The UUID field for primary key.
         user_id (models.IntegerField): The ID of the user who will receive alert.
-        revenue_id (models.IntegerField): The ID of the revenue record.
+        revenue (models.IntegerField): The ID of the revenue record.
         message (models.CharField): The message of the alert.
         alert_date (models.DateTimeField): The date and time of the alert.
         created_at (models.DateTimeField): The date and time the alert was created.
