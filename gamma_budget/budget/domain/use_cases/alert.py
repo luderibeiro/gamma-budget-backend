@@ -46,6 +46,7 @@ class AlertCreateUseCase(
         self,
         user_id: int,
         data: dict,
+        user_email: str,
         revenue_id: str,
         message: str,
         alert_date: Any,
@@ -63,6 +64,7 @@ class AlertCreateUseCase(
         super().__init__()
         self.user_id = user_id
         self.data = {
+            "user_email": user_email,
             "revenue_id": revenue_id,
             "message": message,
             "alert_date": alert_date,
@@ -80,6 +82,7 @@ class AlertCreateUseCase(
         if not alert:
             return self._build_output(alert={"message": "Category not found."})
         parsed_alert = alert.to_dict()
+        _send_email(alert=parsed_alert)
         return self._build_output(parsed_alert)
 
     def _build_output(self, alert: dict):

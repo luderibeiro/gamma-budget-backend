@@ -53,7 +53,6 @@ class LimitListRepository(AbstractBaseLimitListDataAccess):
             list[Limit] | None: A list of Limit instances, or None if no instances found.
         """
         limit_qs = LimitModel.objects.all().filter(user_id=user_id)
-        print("LIMITS", limit_qs)
         if not limit_qs.exists():
             return None
         lista = [parse_limit_model_to_entity(limit) for limit in limit_qs.iterator()]

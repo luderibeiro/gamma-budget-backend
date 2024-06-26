@@ -19,6 +19,7 @@ class Alert(models.Model):
 
     id = models.UUIDField(primary_key=True, editable=False, default=uuid.uuid4)
     user_id = models.IntegerField(blank=False, null=False)
+    user_email = models.EmailField(blank=False, null=False)
     revenue = models.ForeignKey("Revenue", on_delete=models.CASCADE)
     message = models.CharField(max_length=255)
     alert_date = models.DateTimeField(null=True, blank=True)

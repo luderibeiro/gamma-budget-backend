@@ -28,6 +28,7 @@ class AlertCreateRepository(AbstractBaseAlertCreateDataAccess):
         """
         alert = AlertModel.objects.create(
             user_id=user_id,
+            user_email=data.get("user_email"),
             revenue_id=data.get("revenue_id"),
             message=data.get("message"),
             alert_date=data.get("alert_date"),
@@ -94,6 +95,7 @@ class AlertUpdateRepository(AbstractBaseAlertUpdateDataAccess):
         if not alert:
             return None
         alert.revenue = revenue if revenue else alert.revenue
+        alert.user_email = data.get("user_email") if data.get("user_email") else alert.user_email
         alert.message = data.get("message") if data.get("message") else alert.message
         alert.alert_date = data.get("alert_date") if data.get("alert_date") else alert.alert_date
         alert.save()

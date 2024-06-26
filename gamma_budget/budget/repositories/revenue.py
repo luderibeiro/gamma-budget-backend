@@ -32,7 +32,6 @@ class RevenueCreateRepository(AbstractBaseRevenueCreateDataAccess):
             Revenue | None: Created Revenue instance or None if creation fails.
         """
         category = RevenueCategory.objects.get(id=data["category"])
-        print("expiration_date", data.get("expiration_date"))
         if not category:
             return None
         revenue = RevenueModel.objects.create(

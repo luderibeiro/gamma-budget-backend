@@ -19,6 +19,7 @@ class Alert:
         self,
         id: str,
         user_id: int,
+        user_email: str,
         revenue_id: str,
         message: str,
         alert_date: datetime.datetime,
@@ -36,6 +37,7 @@ class Alert:
         """
         self.id = id
         self.user_id = user_id
+        self.user_email = user_email
         self.revenue_id = revenue_id
         self.message = message
         self.alert_date = alert_date
@@ -51,6 +53,7 @@ class Alert:
         return {
             "id": self.id,
             "user_id": self.user_id,
+            "user_email": self.user_email,
             "revenue_id": self.revenue_id,
             "message": self.message,
             "alert_date": self.alert_date,

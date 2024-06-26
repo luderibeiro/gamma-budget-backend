@@ -46,6 +46,7 @@ class AlertCreateAPIView(APIView, ExecuteUseCaseOnCreateMixin):
         """
         data = {
             "user_id": user_id,
+            "user_email": request.data.get("user_email"),
             "revenue_id": request.data.get("revenue_id"),
             "message": request.data.get("message"),
             "alert_date": request.data.get("alert_date"),
@@ -113,6 +114,7 @@ class AlertUpdateAPIView(APIView, ExecuteUseCaseOnPutMixin):
             dict: Keyword arguments.
         """
         data = {
+            "user_email": request.data.get("user_email"),
             "revenue_id": request.data.get("revenue_id"),
             "message": request.data.get("message"),
             "alert_date": request.data.get("alert_date"),
@@ -149,3 +151,4 @@ class AlertDeleteAPIView(APIView, ExecuteUseCaseOnDestroyMixin):
             dict: Keyword arguments.
         """
         return {"user_id": user_id, "alert_id": id}
+

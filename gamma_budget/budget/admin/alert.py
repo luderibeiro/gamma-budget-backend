@@ -11,18 +11,18 @@ class AlertAdmin(admin.ModelAdmin):
 
     list_display: ClassVar[list[str]] = [
         "user_id",
-        "revenue_id",
+        "revenue",
         "message",
         "alert_date",
         "created_at",
     ]
     list_filter: ClassVar[list[str]] = [
         "user_id",
-        "revenue_id",
+        "revenue",
     ]
     search_fields: ClassVar[list[str]] = [
         "user_id",
-        "revenue_id",
+        "revenue",
         "message",
         "alert_date",
         "created_at",
@@ -33,11 +33,12 @@ class AlertAdmin(admin.ModelAdmin):
     ]
     readonly_fields: ClassVar[list[str]] = [
         "id",
+        "created_at",
     ]
     fields: ClassVar[list[str]] = [
         "id",
         "user_id",
-        "revenue_id",
+        "revenue",
         "message",
         "alert_date",
         "created_at",

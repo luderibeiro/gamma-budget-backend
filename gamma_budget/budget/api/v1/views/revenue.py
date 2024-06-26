@@ -159,7 +159,6 @@ class RevenueUpdateAPIView(APIView, ExecuteUseCaseOnPutMixin):
         """
         data = {}
         paid = request.data.get("paid") == "true"
-        print("paid: ", paid)
         data = {
             "name": request.data.get("name"),
             "description": request.data.get("description"),

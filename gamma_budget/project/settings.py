@@ -206,8 +206,17 @@ OAUTH2_PROVIDER = {
     "OAUTH2_BACKEND_CLASS": "oauth2_provider.oauth2_backends.JSONOAuthLibCore",
 }
 
+# Email configuration session
+EMAIL_HOST_USER = "gammabudgetapp@gmail.com"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_HOST_PASSWORD = "fidjbybgdteqebsv"
+EMAIL_USE_TLS = True
+
+# Cors configuration session
 CORS_ORIGIN_ALLOW_ALL = True
 
+# Jazzmin theme configuration session
 JAZZMIN_SETTINGS = {
     # title of the window
     "site_title": "Django Base Admin",
