@@ -32,7 +32,7 @@ DEBUG = os.environ.get("ENVIROMENT") != "PROD"
 
 ALLOWED_HOSTS: list[Any] = ["back-end-d5im.onrender.com", "localhost"]
 CSRF_TRUSTED_ORIGINS = ["https://back-end-d5im.onrender.com", "http://back-end-d5im.onrender.com"]
-
+CORS_ALLOWED_ORIGINS = ["https://back-end-d5im.onrender.com", "http://back-end-d5im.onrender.com"]
 # Application definition
 
 INSTALLED_APPS = [
