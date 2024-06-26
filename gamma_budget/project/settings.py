@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "django-insecure-_0-@$ac9i831u6!iee0y*
 DEBUG = os.environ.get("ENVIROMENT") != "PROD"
 
 ALLOWED_HOSTS: list[Any] = ["back-end-d5im.onrender.com", "localhost"]
-CSRF_TRUSTED_ORIGINS = ["https://back-end-d5im.onrender.com"]
+CSRF_TRUSTED_ORIGINS = ["https://back-end-d5im.onrender.com", "http://back-end-d5im.onrender.com"]
 
 # Application definition
 
