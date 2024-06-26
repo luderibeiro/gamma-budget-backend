@@ -10,6 +10,7 @@ from budget.domain.use_cases.base import (
     AbstractAlertCreateUseCase,
     AbstractAlertDeleteUseCase,
     AbstractAlertListUseCase,
+    AbstractAlertSendEmailUseCase,
     AbstractAlertUpdateUseCase,
     AbstractBaseOutput,
 )
@@ -19,6 +20,7 @@ from budget.domain.use_cases.features import (
     ValidateDataAccessUseCaseMixin,
     ValidateOutputResponseUseCaseMixin,
 )
+from budget.utils import SendEmail as send_email
 
 
 class AlertCreateUseCase(
@@ -82,7 +84,6 @@ class AlertCreateUseCase(
         if not alert:
             return self._build_output(alert={"message": "Category not found."})
         parsed_alert = alert.to_dict()
-        _send_email(alert=parsed_alert)
         return self._build_output(parsed_alert)
 
     def _build_output(self, alert: dict):
@@ -268,4 +269,44 @@ class AlertDeleteUseCase(
             self.output.data = {"message": "Alert not found."}
             return self.output
         self.output.data = {"message": "Alert deleted successfully."}
+        return self.output
+
+
+class AlertSendEmailUseCase(AbstractAlertSendEmailUseCase):
+    """
+    Use case for sending email alerts.
+
+    Extends:
+        AbstractAlertSendEmailUseCase
+    """
+
+    output_response: type[AbstractBaseOutput] | None = None
+
+    def __init__(self):
+        """
+        Initialize the use case.
+        """
+        super().__init__()
+
+    def execute(self):
+        """
+        Execute the use case.
+
+        Returns:
+        -------
+            Message: The output response.
+        """
+        send_email().send_today_alerts()
+        return self._build_output()
+
+    def _build_output(self):
+        """
+        Build the output response.
+
+        Returns:
+        -------
+            AbstractBaseOutput: The output response.
+        """
+        self.output = self.get_output_response()
+        self.output.data = {"message": "Emails trigered."}
         return self.output

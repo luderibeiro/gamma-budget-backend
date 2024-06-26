@@ -152,3 +152,16 @@ class AlertDeleteAPIView(APIView, ExecuteUseCaseOnDestroyMixin):
         """
         return {"user_id": user_id, "alert_id": id}
 
+
+class AlertsEmailTriggerAPIView(APIView, ExecuteUseCaseOnCreateMixin):
+    """
+    API endpoint for triggering the sending of alert emails.
+
+    Extends:
+        APIView
+        ExecuteUseCaseOnCreateMixin
+    """
+
+    permission_classes = (AllowAny,)
+    use_case = AlertListUseCase
+    use_case_output = DjangoApiOutput

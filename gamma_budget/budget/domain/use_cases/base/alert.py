@@ -46,3 +46,12 @@ class AbstractAlertDeleteUseCase(metaclass=ABCMeta):
     @abstractmethod
     def execute(self):
         pass
+
+
+class AbstractAlertSendEmailUseCase(metaclass=ABCMeta):
+    """Base class for use cases send email alert output."""
+
+    @property
+    @abstractmethod
+    def execute(self):
+        pass
