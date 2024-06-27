@@ -85,9 +85,11 @@ class SendEmail:
         print("Checking for alerts to send email...")
         alerts = self._get_alerts_to_send_email_today()
         print("ALERTS: ", alerts)
+        if not alerts:
+            return None
         for alert in alerts:
             email_sent = self._send_email(alert)
-            if email_sent:
+            if not email_sent:
                 print("Email sent successfully to {}".format(alert.get("user_email")))
             else:
                 print("Failed to send email to {}".format(alert.get("user_email")))

@@ -22,7 +22,7 @@ class Alert(models.Model):
     user_email = models.EmailField(blank=False, null=False)
     revenue = models.ForeignKey("Revenue", on_delete=models.CASCADE)
     message = models.CharField(max_length=255)
-    alert_date = models.DateTimeField(null=True, blank=True)
+    alert_date = models.DateField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
