@@ -272,7 +272,11 @@ class AlertDeleteUseCase(
         return self.output
 
 
-class AlertSendEmailUseCase(AbstractAlertSendEmailUseCase):
+class AlertSendEmailUseCase(
+    AbstractAlertSendEmailUseCase,
+    GetOutputResponseUseCaseMixin,
+    ValidateOutputResponseUseCaseMixin,
+):
     """
     Use case for sending email alerts.
 
@@ -282,7 +286,7 @@ class AlertSendEmailUseCase(AbstractAlertSendEmailUseCase):
 
     output_response: type[AbstractBaseOutput] | None = None
 
-    def __init__(self):
+    def __init__(self, data: dict):
         """
         Initialize the use case.
         """

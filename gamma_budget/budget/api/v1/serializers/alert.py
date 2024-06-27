@@ -69,3 +69,26 @@ class AlertUpdateSerializer(serializers.ModelSerializer):
             "created_at",
             "updated_at",
         )
+
+
+class AlertTriggerSerializer(serializers.ModelSerializer):
+    """
+    Serializer for the Alert model.
+
+    Attributes:
+    ----------
+        send_email (serializers.BooleanField): A boolean flag to determine if an email should be sent.
+    """
+
+    send_email = serializers.BooleanField(required=True)
+
+    class Meta:
+        model = Alert
+        fields = [
+            "send_email",
+        ]
+        read_only_fields = (
+            "id",
+            "created_at",
+            "updated_at",
+        )

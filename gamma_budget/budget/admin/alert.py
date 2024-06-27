@@ -38,6 +38,7 @@ class AlertAdmin(admin.ModelAdmin):
     fields: ClassVar[list[str]] = [
         "id",
         "user_id",
+        "user_email",
         "revenue",
         "message",
         "alert_date",

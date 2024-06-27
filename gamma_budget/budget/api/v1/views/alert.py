@@ -4,12 +4,17 @@ from budget.api.v1.mixins import (
     ExecuteUseCaseOnGetMixin,
     ExecuteUseCaseOnPutMixin,
 )
-from budget.api.v1.serializers.alert import AlertSerializer, AlertUpdateSerializer
+from budget.api.v1.serializers.alert import (
+    AlertSerializer,
+    AlertTriggerSerializer,
+    AlertUpdateSerializer,
+)
 from budget.api_output import DjangoApiOutput
 from budget.domain.use_cases import (
     AlertCreateUseCase,
     AlertDeleteUseCase,
     AlertListUseCase,
+    AlertSendEmailUseCase,
     AlertUpdateUseCase,
 )
 from rest_framework.permissions import AllowAny
@@ -163,5 +168,7 @@ class AlertsEmailTriggerAPIView(APIView, ExecuteUseCaseOnCreateMixin):
     """
 
     permission_classes = (AllowAny,)
-    use_case = AlertListUseCase
+    use_case = AlertSendEmailUseCase
     use_case_output = DjangoApiOutput
+    serializer_class = AlertTriggerSerializer
+    serializer_create = AlertTriggerSerializer

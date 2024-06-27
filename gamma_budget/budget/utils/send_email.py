@@ -46,14 +46,14 @@ class SendEmail:
         )
 
     def _get_alerts_to_send_email_today(self):
-        alerts = Alert.objects.filter(alert_date=date.today())
+        alerts = Alert.objects.filter(alert_date__date=date.today())
         if not alerts:
             print("No alerts to send email today.")
             return None
         alerts_data = []
         for alert in alerts:
             alert_data = {
-                "user_email": alert.user.email,
+                "user_email": alert.user_email,
                 "revenue_id": alert.revenue.id,
             }
             alerts_data.append(alert_data)
@@ -84,6 +84,7 @@ class SendEmail:
     def send_today_alerts(self):
         print("Checking for alerts to send email...")
         alerts = self._get_alerts_to_send_email_today()
+        print("ALERTS: ", alerts)
         for alert in alerts:
             email_sent = self._send_email(alert)
             if email_sent:
