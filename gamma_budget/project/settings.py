@@ -18,7 +18,7 @@ import dj_database_url
 
 
 def allowed_origins_func():
-    return ["https://back-end-d5im.onrender.com", "http://back-end-d5im.onrender.com"]
+    return ["https://back-end-d5im.onrender.com"]
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
