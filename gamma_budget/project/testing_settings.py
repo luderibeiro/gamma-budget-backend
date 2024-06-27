@@ -14,8 +14,6 @@ import os
 from pathlib import Path
 from typing import Any
 
-import dj_database_url
-
 
 def allowed_origins_func():
     return ["https://back-end-d5im.onrender.com", "http://back-end-d5im.onrender.com"]
@@ -35,7 +33,6 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "django-insecure-_0-@$ac9i831u6!iee0y*
 DEBUG = os.environ.get("ENVIROMENT") != "PROD"
 
 ALLOWED_HOSTS: list[Any] = ["back-end-d5im.onrender.com", "localhost"]
-
 CSRF_TRUSTED_ORIGINS = [ *allowed_origins_func() ]
 CORS_ALLOWED_ORIGINS = [ *allowed_origins_func() ]
 CORS_ORIGIN_WHITELIST = [ *allowed_origins_func() ]
@@ -94,19 +91,7 @@ WSGI_APPLICATION = "project.wsgi.application"
 
 
 DATABASES = {
-    "default": (
-        dj_database_url.parse(os.environ.get("DATABASE_URL", ""))
-        if "DATABASE_URL" in os.environ
-        else {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": "postgres",
-            "USER": "postgres",
-            "PASSWORD": os.environ.get("DB_PASSWORD", "postgres"),
-            "HOST": "gamma_budget_db",
-            "PORT": 5432,  # default PostgreSQL port
-        }
-    ),
-    "test": {
+    "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": ":memory:",  # Use an in-memory SQLite database
         # Or specify a file path to a temporary SQLite database:
@@ -213,17 +198,8 @@ OAUTH2_PROVIDER = {
     "OAUTH2_BACKEND_CLASS": "oauth2_provider.oauth2_backends.JSONOAuthLibCore",
 }
 
-# Email configuration session
-EMAIL_HOST_USER = "gammabudgetapp@gmail.com"
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_PORT = 587
-EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", "")
-EMAIL_USE_TLS = True
-
-# Cors configuration session
 CORS_ORIGIN_ALLOW_ALL = True
 
-# Jazzmin theme configuration session
 JAZZMIN_SETTINGS = {
     # title of the window
     "site_title": "Django Base Admin",
