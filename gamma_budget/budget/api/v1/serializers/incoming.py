@@ -51,9 +51,9 @@ class IncomingListSerializer(serializers.ModelSerializer):
     name = serializers.CharField(max_length=100)
     description = serializers.CharField(max_length=500, required=False)
     amount = serializers.DecimalField(max_digits=15, decimal_places=2)
-    launch_date = serializers.DateField()
+    launch_date = serializers.DateTimeField()
     # incoming_date = serializers.DateField()
-    launch_date = serializers.DateField()
+    launch_date = serializers.DateTimeField()
     category = serializers.UUIDField()
 
     class Meta:
