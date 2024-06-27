@@ -38,4 +38,4 @@ class Installment(models.Model):
         -------
             str: A string representation of the installment.
         """
-        return self.name
+        return self.revenue.name
