@@ -1,4 +1,3 @@
-
 import pytest
 from budget.api.v1.serializers.incoming import (
     IncomingCreateSerializer,
