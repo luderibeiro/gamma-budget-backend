@@ -1,8 +1,9 @@
-import pytest
 from datetime import date
 from decimal import Decimal
+
+import pytest
 from budget.models import Installment, Revenue, RevenueCategory
-import uuid
+
 
 @pytest.mark.django_db
 def test_installment_creation():
@@ -15,7 +16,7 @@ def test_installment_creation():
         expiration_date=date.today(),
         paid=False,
         payment_date=None,
-        category=category
+        category=category,
     )
     installment = Installment.objects.create(
         revenue=revenue,
@@ -25,7 +26,7 @@ def test_installment_creation():
         period_unit="months",
         paid=False,
         periods_paid=0,
-        payment_method="Credit Card"
+        payment_method="Credit Card",
     )
     assert installment.id is not None
     assert installment.revenue == revenue
@@ -36,6 +37,7 @@ def test_installment_creation():
     assert installment.paid is False
     assert installment.periods_paid == 0
     assert installment.payment_method == "Credit Card"
+
 
 @pytest.mark.django_db
 def test_installment_str():
@@ -48,7 +50,7 @@ def test_installment_str():
         expiration_date=date.today(),
         paid=False,
         payment_date=None,
-        category=category
+        category=category,
     )
     installment = Installment.objects.create(
         revenue=revenue,
@@ -58,9 +60,10 @@ def test_installment_str():
         period_unit="months",
         paid=False,
         periods_paid=0,
-        payment_method="Credit Card"
+        payment_method="Credit Card",
     )
     assert str(installment) == "Test Revenue"
+
 
 @pytest.mark.django_db
 def test_installment_paid():
@@ -73,7 +76,7 @@ def test_installment_paid():
         expiration_date=date.today(),
         paid=False,
         payment_date=None,
-        category=category
+        category=category,
     )
     installment = Installment.objects.create(
         revenue=revenue,
@@ -83,7 +86,7 @@ def test_installment_paid():
         period_unit="months",
         paid=True,
         periods_paid=1,
-        payment_method="Credit Card"
+        payment_method="Credit Card",
     )
     assert installment.paid is True
     assert installment.periods_paid == 1

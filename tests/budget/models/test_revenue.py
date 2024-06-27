@@ -1,8 +1,9 @@
-import pytest
 from datetime import date
 from decimal import Decimal
+
+import pytest
 from budget.models import Revenue, RevenueCategory
-import uuid
+
 
 @pytest.mark.django_db
 def test_revenue_creation():
@@ -15,7 +16,7 @@ def test_revenue_creation():
         expiration_date=date.today(),
         paid=False,
         payment_date=None,
-        category=category
+        category=category,
     )
     assert revenue.id is not None
     assert revenue.user_id == 1
@@ -26,6 +27,7 @@ def test_revenue_creation():
     assert revenue.paid is False
     assert revenue.payment_date is None
     assert revenue.category == category
+
 
 @pytest.mark.django_db
 def test_revenue_str():
@@ -38,9 +40,10 @@ def test_revenue_str():
         expiration_date=date.today(),
         paid=False,
         payment_date=None,
-        category=category
+        category=category,
     )
     assert str(revenue) == "Test Revenue"
+
 
 @pytest.mark.django_db
 def test_revenue_paid():
@@ -53,7 +56,7 @@ def test_revenue_paid():
         expiration_date=date.today(),
         paid=True,
         payment_date=date.today(),
-        category=category
+        category=category,
     )
     assert revenue.paid is True
     assert revenue.payment_date == date.today()
