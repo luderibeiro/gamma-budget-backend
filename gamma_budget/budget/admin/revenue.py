@@ -18,7 +18,6 @@ class RevenueAdmin(admin.ModelAdmin):
 
     readonly_fields: ClassVar[list[str]] = [
         "id",
-        "user_id",
     ]
     list_display: ClassVar[list[str]] = [
         "id",

@@ -1,10 +1,18 @@
 from budget.domain.use_cases import (
+    AlertCreateUseCase,
+    AlertDeleteUseCase,
+    AlertListUseCase,
+    AlertUpdateUseCase,
     IncomingCategoryListUseCase,
     IncomingCreateUseCase,
     IncomingDeleteUseCase,
     IncomingListUseCase,
     IncomingRetrieveUseCase,
     IncomingUpdateUseCase,
+    LimitCreateUseCase,
+    LimitDeleteUseCase,
+    LimitListUseCase,
+    LimitUpdateUseCase,
     RevenueCategoryListUseCase,
     RevenueCreateUseCase,
     RevenueDeleteUseCase,
@@ -13,12 +21,20 @@ from budget.domain.use_cases import (
     RevenueUpdateUseCase,
 )
 from budget.repositories import (
+    AlertCreateRepository,
+    AlertDeleteRepository,
+    AlertListRepository,
+    AlertUpdateRepository,
     IncomingCategoryListRepository,
     IncomingCreateRepository,
     IncomingDeleteRepository,
     IncomingListRepository,
     IncomingRetrieveRepository,
     IncomingUpdateRepository,
+    LimitCreateRepository,
+    LimitDeleteRepository,
+    LimitListRepository,
+    LimitUpdateRepository,
     RevenueCategoryListRepository,
     RevenueCreateRepository,
     RevenueDeleteRepository,
@@ -43,3 +59,13 @@ def configure():
 
     IncomingCategoryListUseCase.data_access = IncomingCategoryListRepository
     RevenueCategoryListUseCase.data_access = RevenueCategoryListRepository
+
+    LimitListUseCase.data_access = LimitListRepository
+    LimitCreateUseCase.data_access = LimitCreateRepository
+    LimitUpdateUseCase.data_access = LimitUpdateRepository
+    LimitDeleteUseCase.data_access = LimitDeleteRepository
+
+    AlertListUseCase.data_access = AlertListRepository
+    AlertCreateUseCase.data_access = AlertCreateRepository
+    AlertUpdateUseCase.data_access = AlertUpdateRepository
+    AlertDeleteUseCase.data_access = AlertDeleteRepository

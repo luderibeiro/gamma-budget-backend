@@ -11,4 +11,14 @@ urlpatterns = [
         include("budget.api.v1.urls.revenue"),
         name="revenue",
     ),
+    path(
+        "limit/",
+        include("budget.api.v1.urls.limit"),
+        name="limit",
+    ),
+    path(
+        "alert/",
+        include("budget.api.v1.urls.alert"),
+        name="alert",
+    ),
 ]

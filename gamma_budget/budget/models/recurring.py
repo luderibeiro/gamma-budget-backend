@@ -29,4 +29,11 @@ class Recurring(models.Model):
     active = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.name
+        """
+        String representation of the recurring revenue.
+
+        Returns:
+        -------
+            str: The name of the revenue associated.
+        """
+        return self.revenue.name

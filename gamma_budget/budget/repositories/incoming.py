@@ -114,8 +114,8 @@ class IncomingUpdateRepository(AbstractBaseIncomingUpdateDataAccess):
         -------
             Incoming | None: The updated Incoming instance, or None if update failed.
         """
-        incoming = IncomingModel.objects.filter(id=incoming_id, user_id=user_id).first()
         category = IncomingCategory.objects.get(id=data["category"]) if data.get("category") else None
+        incoming = IncomingModel.objects.filter(id=incoming_id, user_id=user_id).first()
         if not incoming:
             return None
         incoming.name = data.get("name") if data.get("name") else incoming.name
