@@ -1,19 +1,12 @@
-import unittest
-from unittest.mock import Mock
-from rest_framework import status
-from rest_framework.response import Response
-from budget.api.v1.mixins import (
-    ExecuteUseCaseOnGetMixin,
-    ExecuteUseCaseOnDestroyMixin,
-    ExecuteUseCaseOnUpdateMixin,
-    ExecuteUseCaseOnPutMixin,
-    ExecuteUseCaseOnCreateMixin,
-)
-import pytest
 from unittest.mock import Mock, patch
+
+import pytest
+from budget.api.v1.mixins import (
+    ExecuteUseCaseOnDestroyMixin,
+    ExecuteUseCaseOnGetMixin,
+)
 from rest_framework import status
 from rest_framework.response import Response
-from budget.api_output import DjangoApiOutput
 
 
 @pytest.fixture
@@ -60,9 +53,9 @@ def test_delete_method(execute_use_case_on_destroy_mixin, mock_request):
         assert response.data == {"test": "data"}
 
     # Test exception handling (example: HTTP 400 error)
-    with pytest.raises(ExecuteUseCaseOnGetMixin.Http400Error), patch.object(
-        execute_use_case_on_destroy_mixin, "execute_use_case_destroy", side_effect=ExecuteUseCaseOnGetMixin.Http400Error("Bad request")
+    with (
+        pytest.raises(ExecuteUseCaseOnGetMixin.Http400Error),
+        patch.object(execute_use_case_on_destroy_mixin, "execute_use_case_destroy", side_effect=ExecuteUseCaseOnGetMixin.Http400Error("Bad request")),
     ):
         response = execute_use_case_on_destroy_mixin.delete(mock_request)
         assert response.status_code == status.HTTP_400_BAD_REQUEST
-
