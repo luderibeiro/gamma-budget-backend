@@ -5,9 +5,7 @@ from django.contrib import admin
 
 
 class AlertAdmin(admin.ModelAdmin):
-    """
-    Alert admin class.
-    """
+    """Alert admin class."""
 
     list_display: ClassVar[list[str]] = [
         "user_id",

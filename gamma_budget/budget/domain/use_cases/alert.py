@@ -20,7 +20,7 @@ from budget.domain.use_cases.features import (
     ValidateDataAccessUseCaseMixin,
     ValidateOutputResponseUseCaseMixin,
 )
-from budget.utils import SendEmail as send_email
+from budget.utils import SendEmail
 
 
 class AlertCreateUseCase(
@@ -287,9 +287,7 @@ class AlertSendEmailUseCase(
     output_response: type[AbstractBaseOutput] | None = None
 
     def __init__(self, data: dict):
-        """
-        Initialize the use case.
-        """
+        """Initialize the use case."""
         super().__init__()
 
     def execute(self):
@@ -300,7 +298,7 @@ class AlertSendEmailUseCase(
         -------
             Message: The output response.
         """
-        send_email().send_today_alerts()
+        SendEmail().send_today_alerts()
         return self._build_output()
 
     def _build_output(self):

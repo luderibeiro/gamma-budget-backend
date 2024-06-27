@@ -1,3 +1,5 @@
+from typing import ClassVar
+
 from budget.models import Limit
 from rest_framework import serializers
 
@@ -23,7 +25,7 @@ class LimitSerializer(serializers.ModelSerializer):
         """Meta class for LimitCreateSerializer."""
 
         model = Limit
-        fields = [
+        fields: ClassVar[list[str]] = [
             "user_id",
             "limit",
             "amount",
@@ -48,7 +50,7 @@ class LimitUpdateSerializer(serializers.ModelSerializer):
         """Meta class for LimitUpdateSerializer."""
 
         model = Limit
-        fields = [
+        fields: ClassVar[list[str]] = [
             "limit",
             "amount",
         ]

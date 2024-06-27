@@ -1,3 +1,5 @@
+from typing import ClassVar
+
 from budget.models.alert import Alert
 from rest_framework import serializers
 
@@ -22,9 +24,9 @@ class AlertSerializer(serializers.ModelSerializer):
     message = serializers.CharField(max_length=255)
     alert_date = serializers.DateTimeField()
 
-    class Meta:
+    class Meta:  # noqa: D106
         model = Alert
-        fields = [
+        fields: ClassVar[list[str]] = [
             "user_id",
             "user_email",
             "revenue_id",
@@ -56,9 +58,9 @@ class AlertUpdateSerializer(serializers.ModelSerializer):
     message = serializers.CharField(max_length=255)
     alert_date = serializers.DateTimeField()
 
-    class Meta:
+    class Meta:  # noqa: D106
         model = Alert
-        fields = [
+        fields: ClassVar[list[str]] = [
             "user_email",
             "revenue_id",
             "message",
@@ -82,9 +84,9 @@ class AlertTriggerSerializer(serializers.ModelSerializer):
 
     send_email = serializers.BooleanField(required=True)
 
-    class Meta:
+    class Meta:  # noqa: D106
         model = Alert
-        fields = [
+        fields: ClassVar[list[str]] = [
             "send_email",
         ]
         read_only_fields = (

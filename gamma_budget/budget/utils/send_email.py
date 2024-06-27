@@ -1,5 +1,4 @@
 import os
-import time
 from datetime import date
 
 from budget.models.alert import Alert
@@ -7,7 +6,7 @@ from budget.models.revenue import Revenue
 from django.core.mail import send_mail
 
 
-class SendEmail:
+class SendEmail:  # noqa: D101
     def _send_alert_email(
         self,
         subject,
@@ -42,7 +41,7 @@ class SendEmail:
             "<p><strong>Alerta de despesa GammaBudget</strong></p>"
             "<p>Despesa: " + revenue["name"] + "</p>"
             "<p>Data de vencimento: " + str(revenue["expiration_date"]) + "</p>"
-            "<p><strong>Valor da despesa: {}</strong></p>".format(str(revenue["amount"]) + "</body>" "</html>")
+            "<p><strong>Valor da despesa: {}</strong></p>".format(str(revenue["amount"]) + "</body></html>")
         )
 
     def _get_alerts_to_send_email_today(self):
@@ -75,7 +74,7 @@ class SendEmail:
         revenue = {}
         revenue = self._get_revenue(alert.get("revenue_id"))
         self._send_alert_email(
-            subject=f"Alerta de despesa `{revenue.get("name")} - GammaBudget",
+            subject=f"Alerta de despesa `{revenue.get('name')} - GammaBudget",
             from_email=os.getenv("EMAIL_HOST_USER"),
             recipient_list=[alert.get("user_email")],
             revenue=revenue,

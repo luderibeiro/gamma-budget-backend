@@ -5,9 +5,7 @@ from django.contrib import admin
 
 
 class LimitAdmin(admin.ModelAdmin):
-    """
-    Limit admin class.
-    """
+    """Limit admin class."""
 
     list_display: ClassVar[list[str]] = [
         "id",

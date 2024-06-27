@@ -6,7 +6,6 @@ from budget.domain.data_access.alert import (
 )
 from budget.domain.entities import Alert
 from budget.models import Alert as AlertModel
-from budget.models.categories import RevenueCategory
 from budget.models.revenue import Revenue
 from budget.repositories.parsers.alert import parse_alert_model_to_entity
 
