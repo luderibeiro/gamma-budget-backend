@@ -26,7 +26,8 @@ class UserListAPIView(generics.ListAPIView):
         search_fields (ClassVar[list[str]]): List of fields for searching users.
     """
 
-    queryset = User.objects.filter(is_superuser=False)
+    permission_classes = (IsAdminUser,)
+    queryset = User.objects.all()
     serializer_class = UserSerializer
     filterset_fields: ClassVar[list[str]] = ["first_name", "last_name", "email"]
     search_fields: ClassVar[list[str]] = ["first_name", "last_name", "email"]

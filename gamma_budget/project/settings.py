@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "core",
     "budget",
     "corsheaders",
+    "django_filters",
 ]
 
 MIDDLEWARE = [
