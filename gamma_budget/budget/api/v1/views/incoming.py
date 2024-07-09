@@ -56,7 +56,8 @@ class IncomingCreateAPIView(APIView, ExecuteUseCaseOnCreateMixin):
             "name": request.data.get("name"),
             "description": request.data.get("description"),
             "amount": request.data.get("amount"),
-            "incoming_date": request.data.get("incoming_date"),
+            # "incoming_date": request.data.get("incoming_date"),
+            "launch_date": request.data.get("launch_date"),
             "category": request.data.get("category"),
         }
         return data
@@ -156,7 +157,8 @@ class IncomingUpdateAPIView(APIView, ExecuteUseCaseOnPutMixin):
             "name": request.data.get("name"),
             "description": request.data.get("description"),
             "amount": request.data.get("amount"),
-            "incoming_date": request.data.get("incoming_date"),
+            # "incoming_date": request.data.get("incoming_date"),
+            "launch_date": request.data.get("launch_date"),
             "category": request.data.get("category"),
         }
         return {"user_id": user_id, "incoming_id": id, "data": data}

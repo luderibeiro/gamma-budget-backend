@@ -17,7 +17,8 @@ class IncomingCreateSerializer(serializers.ModelSerializer):
     name = serializers.CharField(max_length=100)
     description = serializers.CharField(max_length=500, required=False)
     amount = serializers.DecimalField(max_digits=15, decimal_places=2)
-    incoming_date = serializers.DateField()
+    # incoming_date = serializers.DateField()
+    launch_date = serializers.DateField()
     category = serializers.UUIDField()
 
     class Meta:
@@ -28,6 +29,8 @@ class IncomingCreateSerializer(serializers.ModelSerializer):
             "name",
             "description",
             "amount",
+            # "incoming_date",
+            "launch_date",
             "category",
         )
 
@@ -49,7 +52,8 @@ class IncomingListSerializer(serializers.ModelSerializer):
     description = serializers.CharField(max_length=500, required=False)
     amount = serializers.DecimalField(max_digits=15, decimal_places=2)
     launch_date = serializers.DateField()
-    incoming_date = serializers.DateField()
+    # incoming_date = serializers.DateField()
+    launch_date = serializers.DateField()
     category = serializers.UUIDField()
 
     class Meta:
@@ -84,7 +88,8 @@ class IncomingUpdateSerializer(serializers.ModelSerializer):
     name = serializers.CharField(max_length=100)
     description = serializers.CharField(max_length=500, required=False)
     amount = serializers.DecimalField(max_digits=15, decimal_places=2)
-    incoming_date = serializers.DateField(allow_null=True)
+    # incoming_date = serializers.DateField(allow_null=True)
+    launch_date = serializers.DateField()
     category = serializers.UUIDField()
 
     class Meta:
@@ -95,7 +100,8 @@ class IncomingUpdateSerializer(serializers.ModelSerializer):
             "name",
             "description",
             "amount",
-            "incoming_date",
+            # "incoming_date",
+            "launch_date",
             "category",
         )
 
