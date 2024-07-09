@@ -10,12 +10,14 @@ class IncomingCreateSerializer(serializers.ModelSerializer):
         name (CharField): The name of the incoming item.
         description (CharField): The description of the incoming item.
         amount (DecimalField): The amount of the incoming item.
+        incoming_date (DateField): The date of the incoming item.
         category (UUIDField): The category of the incoming item.
     """
 
     name = serializers.CharField(max_length=100)
     description = serializers.CharField(max_length=500, required=False)
     amount = serializers.DecimalField(max_digits=15, decimal_places=2)
+    incoming_date = serializers.DateField()
     category = serializers.UUIDField()
 
     class Meta:
@@ -75,12 +77,14 @@ class IncomingUpdateSerializer(serializers.ModelSerializer):
         name (CharField): The name of the incoming item.
         description (CharField): The description of the incoming item.
         amount (DecimalField): The amount of the incoming item.
+        incoming_date (DateField): The incoming date of the incoming item.
         category (UUIDField): The category of the incoming item.
     """
 
     name = serializers.CharField(max_length=100)
     description = serializers.CharField(max_length=500, required=False)
     amount = serializers.DecimalField(max_digits=15, decimal_places=2)
+    incoming_date = serializers.DateField(allow_null=True)
     category = serializers.UUIDField()
 
     class Meta:
@@ -91,6 +95,7 @@ class IncomingUpdateSerializer(serializers.ModelSerializer):
             "name",
             "description",
             "amount",
+            "incoming_date",
             "category",
         )
 
