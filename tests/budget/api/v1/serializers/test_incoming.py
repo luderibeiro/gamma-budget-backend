@@ -8,7 +8,7 @@ from budget.models.categories import IncomingCategory
 @pytest.mark.django_db
 def test_incoming_create_serializer():
     category = IncomingCategory(name="Teste")
-    data = {"name": "Test Incoming", "description": "Test description", "amount": "100.00", "category": category.id}
+    data = {"name": "Test Incoming", "description": "Test description", "amount": "100.00", "category": category.id, "launch_date": "2023-04-01"}
     serializer = IncomingCreateSerializer(data=data)
 
     assert serializer.is_valid(), serializer.errors
