@@ -1,3 +1,4 @@
+import datetime
 from typing import Any
 
 from budget.domain.data_access.incoming import (
@@ -51,6 +52,8 @@ class IncomingCreateUseCase(
         name: str,
         description: str,
         amount: float,
+        # incoming_date: datetime.date,
+        launch_date: datetime.date,
         category: str,
     ):
         """
@@ -71,6 +74,8 @@ class IncomingCreateUseCase(
             "name": name,
             "description": description,
             "amount": amount,
+            # "incoming_date": incoming_date,
+            "launch_date": launch_date,
             "category": category,
         }
 

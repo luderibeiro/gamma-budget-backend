@@ -26,14 +26,16 @@ class IncomingCreateRepository(AbstractBaseIncomingCreateDataAccess):
         -------
             Incoming | None: The created Incoming instance, or None if creation failed.
         """
-        category = IncomingCategory.objects.get(id=data["category"])
+        category = IncomingCategory.objects.get(id=data.get("category"))
         if not category:
             return None
         incoming = IncomingModel.objects.create(
             user_id=user_id,
-            name=data["name"],
-            description=data["description"],
-            amount=data["amount"],
+            name=data.get("name"),
+            description=data.get("description"),
+            amount=data.get("amount"),
+            # incoming_date=data.get("incoming_date"),
+            launch_date=data.get("launch_date"),
             category=category,
         )
         return parse_incoming_model_to_entity(incoming)
@@ -121,6 +123,8 @@ class IncomingUpdateRepository(AbstractBaseIncomingUpdateDataAccess):
         incoming.name = data.get("name") if data.get("name") else incoming.name
         incoming.description = data.get("description") if data.get("description") else incoming.description
         incoming.amount = data.get("amount") if data.get("amount") else incoming.amount
+        # incoming.incoming_date = data.get("incoming_date") if data.get("incoming_date") else incoming.incoming_date
+        incoming.launch_date = data.get("launch_date") if data.get("launch_date") else incoming.launch_date
         incoming.category = category if category else incoming.category
         incoming.save()
         return parse_incoming_model_to_entity(incoming)
