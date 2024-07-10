@@ -22,7 +22,7 @@ class AlertSerializer(serializers.ModelSerializer):
     user_email = serializers.EmailField(required=True)
     revenue_id = serializers.UUIDField(required=True)
     message = serializers.CharField(max_length=255)
-    alert_date = serializers.DateTimeField()
+    alert_date = serializers.DateField()
 
     class Meta:  # noqa: D106
         model = Alert
