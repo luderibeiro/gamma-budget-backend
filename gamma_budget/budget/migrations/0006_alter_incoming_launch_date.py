@@ -6,14 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("budget", "0005_alert_limit"),
-        ("budget", "0005_alter_incoming_incoming_date"),
+        ('budget', '0005_alert_limit'),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name="incoming",
-            name="launch_date",
+            model_name='incoming',
+            name='launch_date',
             field=models.DateTimeField(blank=True),
         ),
     ]
