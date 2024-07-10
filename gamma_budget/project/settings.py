@@ -16,6 +16,11 @@ from typing import Any
 
 import dj_database_url
 
+
+def allowed_origins_func():
+    return ["https://back-end-d5im.onrender.com"]
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR.parent / "data" / "web"
@@ -31,8 +36,10 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "django-insecure-_0-@$ac9i831u6!iee0y*
 DEBUG = os.environ.get("ENVIROMENT") != "PROD"
 
 ALLOWED_HOSTS: list[Any] = ["back-end-d5im.onrender.com", "localhost"]
-CSRF_TRUSTED_ORIGINS = ["https://back-end-d5im.onrender.com", "http://back-end-d5im.onrender.com"]
-CORS_ALLOWED_ORIGINS = ["https://back-end-d5im.onrender.com", "http://back-end-d5im.onrender.com"]
+
+CSRF_TRUSTED_ORIGINS = [*allowed_origins_func()]
+CORS_ALLOWED_ORIGINS = [*allowed_origins_func()]
+CORS_ORIGIN_WHITELIST = [*allowed_origins_func()]
 # Application definition
 
 INSTALLED_APPS = [

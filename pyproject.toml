@@ -58,7 +58,7 @@ lint.extend-per-file-ignores ={"__init__.py"=["F403"], "*/migrations/*"=["D", "F
 docstring-code-format = true
 
 [tool.pytest.ini_options]
-DJANGO_SETTINGS_MODULE = "project"
+DJANGO_SETTINGS_MODULE = "project.testing_settings"
 
 addopts = "--cov-report html:testing_reports/html/coverage_report_html --cov=gamma_budget -rasl --verbosity=3 -p no:flaky -p no:nose"
 log_level = "INFO"
