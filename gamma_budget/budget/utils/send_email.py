@@ -45,7 +45,7 @@ class SendEmail:  # noqa: D101
         )
 
     def _get_alerts_to_send_email_today(self):
-        alerts = Alert.objects.filter(alert_date__date=date.today())
+        alerts = Alert.objects.filter(alert_date__exact=date.today())
         if not alerts:
             print("No alerts to send email today.")
             return None
